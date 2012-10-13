@@ -25,7 +25,16 @@
             <li><%= link_to "Answer Questions", questions_path%></li>
             <li><%= link_to "Author Questions", questions_path %></li>
             <li><%= link_to "Generate Quiz", questions_path %></li>
-            <i class="icon-search"></i>
+			
+			<div class="btn-group">
+			  <a class="btn btn-primary" href="#"><i class="icon-user icon-white"></i> Sign In</a>
+			  <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+			  <ul class="dropdown-menu pull-right" style="position:absolute">
+			    <li><a href="#"><i class="icon-pencil"></i> Log In</a></li>
+			    <li><a href="#"><i class="icon-trash"></i> Log Out</a></li>
+			  </ul>
+			</div>
+            
           </ul>
         </div>
       </div>
