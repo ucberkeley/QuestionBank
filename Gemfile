@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.1.0'
+gem 'rails', '3.2.1'
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
@@ -12,11 +12,13 @@ gem 'sqlite3'
 # in production environments by default.
 group :assets do
   gem 'twitter-bootstrap-rails'
-  gem 'sass-rails', "  ~> 3.1.0"
-  gem 'coffee-rails', "~> 3.1.0"
+  gem 'sass-rails', "  ~> 3.2.3"
+  gem 'coffee-rails', "~> 3.2.1"
   gem 'uglifier'
 end
 
+gem 'omniauth-facebook'
+gem 'omniauth'
 gem 'jquery-rails'
 
 # Use unicorn as the web server

@@ -1,70 +1,19 @@
 <div class="container">
       <div class="row">
         <!-- Main hero unit for a primary marketing message or call to action -->
-        <div class="well span3 offset1">
-          <form class="form-stacked" id="sign-up-form">
-            <h2>Sign Up for Free</h2>
-            
-            <div class="cleaner_h20"></div>
-            
-            <div class="clearfix">
-              <label for="email_up">Email</label>
-              <div class="input">
-                <input id="email_up" name="email_up" size="30" type="text" class="xlarge">
-                <!--
-                <span class="help-block">
-                  <span class='label important'>Warning</span> incorrect email address
-               </span>
-                -->
-              </div>
-            </div>
-            
-            <div class="clearfix">
-              <label for="username_up">Username</label>
-              <div class="input">
-                <input id="username_up" name="username_up" size="30" type="text" class="xlarge">
-                <!--
-                <span class="help-block">
-                  <span class='label important'>Warning</span> the username already exists
-                </span>
-                -->
-              </div>
-            </div>
-            
-            <div class="clearfix">
-              <label for="pwd_up">Password</label>
-              <div class="input">
-                <input id="pwd_up" name="pwd_up" size="30" type="text" class="xlarge">
-                <!--
-                <span class="help-block">
-                  <span class='label important'>Warning</span> too easy - even I can guess it
-               </span>
-              -->
-              </div>
-            </div>
-            
-            <div class="cleaner_h10"></div>
-            
-            <ul class="inputs-list">
-              <li>
-                <label>
-                  <input type="checkbox" name="terms_up" id="terms_up" value="yes" checked="true">
-                  <span for="terms_up">Agree to <a href="#">Terms of Use</a></span>
-                </label>
-              </li>
-            </ul>
-            
-            <div class="cleaner_h20"></div>
-            <input type="submit" value="Sign Up »" id="submit_up" name="submit_up" class="btn primary">
-          </form>
-        </div>
-        
         <div class="well span3">
           <form class="form-stacked" id="sign-in-form">
             <h2>Sign In</h2>
             
             <div class="cleaner_h20"></div>
-            
+             <div id="user_nav">
+			  <% if current_user %>
+			    Signed in as <strong><%= current_user.name %></strong>!
+			    <%= link_to "Sign out", signout_path, id: "sign_out" %>
+			  <% else %>
+			    <%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %>
+			  <% end %>
+			</div>
             <div class="clearfix">
               <label for="username_in">Username</label>
               <div class="input">
