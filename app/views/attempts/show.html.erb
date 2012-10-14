@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Question:</b>
+  <%= @attempt.question_id %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @attempt.user_id %>
+</p>
+
+<p>
+  <b>Answer:</b>
+  <%= @attempt.answer %>
+</p>
+
+
+<%= link_to 'Edit', edit_attempt_path(@attempt) %> |
+<%= link_to 'Back', attempts_path %>

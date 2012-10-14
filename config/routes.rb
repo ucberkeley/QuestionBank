@@ -1,16 +1,9 @@
 QuestionBank::Application.routes.draw do
-  # get "home/index"
-  root,  :controller => 'home', :action => 'index'
-  get "/home", :controller => 'home', :action => 'index'
+  resources :attempts
 
-  # map.home '', :controller => 'home', :action => 'index'
-
-  # match '/' => 'HomeController#index'
-
-  # root :to => '/home'
+  get "home/index"
 
   resources :questions
-  # resources :home
 
   match 'auth/:provider/callback', to: 'sessions#create'
   match 'auth/failure', to: redirect('/')
@@ -64,6 +57,7 @@ QuestionBank::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
+  root :to => "home#index"
 
   # See how all your routes lay out with "rake routes"
 
