@@ -24,17 +24,7 @@
           <ul class="nav">
             <li><%= link_to "Answer Questions", questions_path%></li>
             <li><%= link_to "Author Questions", questions_path %></li>
-            <li><%= link_to "Generate Quiz", questions_path %></li>
-			
-			<div class="btn-group">
-			  <a class="btn btn-primary" href="#"><i class="icon-user icon-white"></i> Sign In</a>
-			  <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
-			  <ul class="dropdown-menu pull-right" style="position:absolute">
-			    <li><a href="#"><i class="icon-pencil"></i> Log In</a></li>
-			    <li><a href="#"><i class="icon-trash"></i> Log Out</a></li>
-			  </ul>
-			</div>
-            
+            <li><a href="#generate-quiz-modal" role="button" data-show="false" data-toggle="modal">Generate Quiz</a></li>
           </ul>
         </div>
       </div>
@@ -53,15 +43,45 @@
        	JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE
        	JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE
        	JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE
-       	JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE
-       	JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE
-       	JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE
-       	JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE
-       	JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE
-       	JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE
-       	JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE
-       	JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE
       </div>
+    </div>
+  </div>
+  <!-- Button to trigger modal -->
+   
+  <!-- Modal -->
+  <div class="modal" id="generate-quiz-modal" tabindex="-1" role="dialog"  aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      <h3 id="myModalLabel">Generate a Quiz</h3>
+    </div>
+    <div class="modal-body">
+      <form class="form-horizontal">
+        <div class="control-group">
+          <label class="control-label" for="inputEmail">Number of Questions</label>
+          <div class="controls">
+            <input type="text" id="inputEmail" placeholder="number">
+          </div>
+        </div>
+        <div class="control-group">
+          <div class="controls">
+            <div class="btn-group">
+              <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                Tags
+                <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu" style="z-index:1000">
+                <a href="#">tags</a>
+                <a href="#">tags</a>
+                <a href="#">tags</a>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button class="btn pull-left" data-dismiss="modal" aria-hidden="true">Cancel</button>
+      <button class="btn btn-primary">Submit</button>
     </div>
   </div>
 </body>

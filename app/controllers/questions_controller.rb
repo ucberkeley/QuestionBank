@@ -87,5 +87,6 @@ class QuestionsController < ApplicationController
 
       redirect_to('tbd')
   end 
-  
+  end
+
 end
