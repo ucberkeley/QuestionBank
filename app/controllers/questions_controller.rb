@@ -79,14 +79,14 @@ class QuestionsController < ApplicationController
       format.html { redirect_to questions_url }
       format.json { head :ok }
     end
-
-  def generate_quiz 
-      tags = params[:tags]
-      number = params[:number]
-      @questions = Question.generate_quiz(tags, number)
-
-      redirect_to('tbd')
-  end 
   end
 
+  def generate_quiz 
+      print '*************************************'
+      tags = params[:tags]
+      number = params[:number]
+      #@questions = Question.generate_quiz(tags, number)
+      @questions = []
+      redirect_to '/home/index'
+  end
 end

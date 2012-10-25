@@ -4,75 +4,26 @@
         <div class="well span3">
           <form class="form-stacked" id="sign-in-form">
             <h2>Sign In</h2>
-            
             <div class="cleaner_h20"></div>
              <div id="user_nav">
-			  <% if current_user %>
-			    Signed in as <strong><%= current_user.name %></strong>!
-			    <%= link_to "Sign out", signout_path, id: "sign_out" %>
-			  <% else %>
-			    <%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %>
-			  <% end %>
-			</div>
-            <div class="clearfix">
-              <label for="username_in">Username</label>
-              <div class="input">
-                <input id="username_in" name="username_in" size="30" type="text">
-                <!--
-                <span class="help-block">
-                  <span class='label important'>Warning</span> the username already exists
-                </span>
-                -->
-              </div>
-            </div>
-            
-            <div class="clearfix">
-              <label for="pwd_in">Password</label>
-              <div class="input">
-                <input id="pwd_in" name="pwd_in" size="30" type="text">
-                <!--
-                <span class="help-block">
-                  <span class='label important'>Warning</span> too easy - even I can guess it
-               </span>
-              -->
-              </div>
-            </div>
-            
-            <ul class="inputs-list">
-              <li>
-                <label>
-                  <input type="checkbox" name="remember_in" id="remember_in" value="yes" checked="true">
-                  <span for="remember_in">Remember me</span>
-                </label>
-              </li>
-            </ul>
-            
-            <div class="cleaner_h20"></div>
-            <input type="submit" value="Sign In »" id="submit_in" name="submit_in" class="btn primary">
-            <span class="switch" data-switch="forgot-password-form">Forgot my password</span>
-          </form>
-          
-          <form class="form-stacked hide" id="forgot-password-form">
-            <h2>Forgot Password</h2>
-            
-            <div class="cleaner_h20"></div>
-            
-            <div class="clearfix">
-              <label for="email_pwd">Email</label>
-              <div class="input">
-                <input id="email_pwd" name="email_pwd" size="30" type="text">
-                <!--
-                <span class="help-block">
-                  <span class='label important'>Warning</span> the username already exists
-                </span>
-                -->
-                <div class="cleaner_h10"></div>
-                <span class="switch" data-switch="sign-in-form">Never mind, I remember my password</span>
-              </div>
-            </div>
-            
-            <div class="cleaner_h20"></div>
-            <input type="submit" value="Remind me »" id="submit_pwd" name="submit_pwd" class="btn primary">
+      			  <% if current_user %>
+      			    Signed in as <strong><%= current_user.name %></strong>!
+      			    <%= link_to "Sign out", signout_path, id: "sign_out" %>
+      			  <% else %>
+      			    <%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %>
+      			  <% end %>
+      			</div> 
+            <div class="fb-login-button" data-show-faces="true" data-width="270" data-max-rows="1"></div>
+            <div id="fb-root"></div>
+              <script>
+              (function(d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) return;
+                js = d.createElement(s); js.id = id;
+                js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=412110575521736";
+                fjs.parentNode.insertBefore(js, fjs);
+              }(document, 'script', 'facebook-jssdk'));
+              </script>           
           </form>
         </div>
       </div>
