@@ -50,4 +50,3 @@ gem 'jquery-rails'
 
 
 
-
