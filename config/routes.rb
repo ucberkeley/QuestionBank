@@ -1,4 +1,6 @@
 QuestionBank::Application.routes.draw do
+  resources :questions
+
   root :to => "home#index"
   resources :users, :only => [:index, :show, :edit, :update ]
   match '/auth/:provider/callback' => 'sessions#create'
