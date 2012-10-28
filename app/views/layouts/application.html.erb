@@ -28,7 +28,7 @@
         <div class="nav-collapse">
           <ul class="nav">
             <li><%= link_to "Answer Questions", questions_path%></li>
-            <li><%= link_to "Author Questions", questions_path %></li>
+            <li><%= link_to "Create Questions", questions_path %></li>
             <li><a href="#generate-quiz-modal" role="button" data-show="false" data-toggle="modal">Generate Quiz</a></li>
           </ul>
         </div>
@@ -62,7 +62,7 @@
       <div class="control-group">
         <label class="control-label" for="inputEmail">Number of Questions</label>
         <div class="controls">
-          <input type="text" id="inputEmail" placeholder="number">
+          <input type="text" id="inputEmail" placeholder="1 to 100">
         </div>
       </div>
       <div class="control-group">
@@ -73,9 +73,9 @@
               <span class="caret"></span>
             </a>
             <ul class="dropdown-menu" style="z-index:1000">
-              <a href="#">tags</a>
-              <a href="#">tags</a>
-              <a href="#">tags</a>
+              <% @tags.each do |tag| %>
+                <li> <%= tag.name %> </li>
+              <% end %>
             </ul>
           </div>
         </div>

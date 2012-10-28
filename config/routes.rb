@@ -1,16 +1,12 @@
 QuestionBank::Application.routes.draw do
-  resources :attempts
+	match ':controller/:action'
+	resources :attempts
+  	resources :questions
 
-  get "home/index"
-  get "questions/generate_quiz" => "questions#generate_quiz"
-  resources :questions
-
-  match 'auth/:provider/callback', to: 'sessions#create'
-  match 'auth/failure', to: redirect('/')
-  match 'signout', to: 'sessions#destroy', as: 'signout'
+  	match 'auth/:provider/callback', to: 'sessions#create'
+  	match 'auth/failure', to: redirect('/')
+  	match 'signout', to: 'sessions#destroy', as: 'signout'
 
 
-  root :to => "home#index"
-
-
+	root :to => "home#index"
 end

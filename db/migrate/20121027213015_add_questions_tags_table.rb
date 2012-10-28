@@ -3,7 +3,6 @@ class AddQuestionsTagsTable < ActiveRecord::Migration
 		create_table :questions_tags, :id => false do |t|
 			t.references :question
 			t.references :tag
-			t.timestamps
 		end
 	end
 

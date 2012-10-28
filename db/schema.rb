@@ -30,10 +30,8 @@ ActiveRecord::Schema.define(:version => 20121027213015) do
   end
 
   create_table "questions_tags", :id => false, :force => true do |t|
-    t.integer  "question_id"
-    t.integer  "tag_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.integer "question_id"
+    t.integer "tag_id"
   end
 
   create_table "tags", :force => true do |t|
@@ -44,7 +42,7 @@ ActiveRecord::Schema.define(:version => 20121027213015) do
 
   create_table "users", :force => true do |t|
     t.string   "provider"
-    t.string   "uid"
+    t.integer  "uid"
     t.string   "name"
     t.string   "oauth_token"
     t.datetime "oauth_expires_at"
