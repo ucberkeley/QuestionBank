@@ -1,39 +1,11 @@
 <%= form_for @question, :html => { :class => '' } do |f| %>
-	<form action="/questions/generate_quiz" class="form-horizontal">
-      <div class="control-group">
-        <label class="control-label" for="inputEmail">Number of Questions</label>
-        <div class="controls">
-          <input type="text" id="inputEmail" placeholder="number">
-        </div>
-      </div>
-      <div class="control-group">
-        <div class="controls">
-          <div class="btn-group">
-            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-              Tags
-              <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu" style="z-index:1000">
-              <a href="#">tags</a>
-              <a href="#">tags</a>
-              <a href="#">tags</a>
-            </ul>
-          </div>
-        </div>
-      </div>
-   	 </div>
+    <label> Question </label>
+    <p> <%= @question.xml if @question.xml %> </p>
+    <label> Author </label>
+    <p> <%= User.find_by_id(@question.user_id).name if @question.user_id %> </p>
+    <div class="generate-question form-actions">
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                questions_path, :class => 'btn pull-right' %>
+      <%= f.submit nil, :class => 'btn btn-primary pull-left' %>
     </div>
-    </form>
-  <div class="generate-question form-actions">
-     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                questions_path, :class => 'btn pull-left' %>
-    <%= f.submit nil, :class => 'btn btn-primary pull-right' %>
-   
-<%= form_for @question, :html => { :class => 'form-horizontal' } do |f| %>
-
-  <div class="form-actions">
-    <%= f.submit nil, :class => 'btn btn-primary' %>
-    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                questions_path, :class => 'btn' %>
-  </div>
 <% end %>

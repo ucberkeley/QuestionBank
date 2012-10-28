@@ -1,7 +1,8 @@
 QuestionBank::Application.routes.draw do
-	match ':controller/:action'
 	resources :attempts
   	resources :questions
+  	match ':controller/:action'
+
 
   	match 'auth/:provider/callback', to: 'sessions#create'
   	match 'auth/failure', to: redirect('/')
