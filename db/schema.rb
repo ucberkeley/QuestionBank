@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(:version => 20121027213015) do
 
   create_table "users", :force => true do |t|
     t.string   "provider"
-    t.integer  "uid"
+    t.string   "uid"
     t.string   "name"
     t.string   "oauth_token"
     t.datetime "oauth_expires_at"
