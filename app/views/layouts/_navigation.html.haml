@@ -1,5 +1,6 @@
 = link_to "QuestionBank", root_path, :class => 'brand'
 %ul.nav
+	%li= link_to 'Questions', questions_path
 	- if user_signed_in?
 		%li= link_to 'Logout', signout_path
 		-if current_user.has_role? :admin
