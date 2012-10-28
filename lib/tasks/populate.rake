@@ -7,7 +7,7 @@ namespace :db do
     [Attempt, Question, Tag, User].each(&:delete_all)
     
     # Create users
-    100.times do |i|
+    50.times do |i|
       created_at = Populator.value_in_range(1.year.ago..Time.now)
       User.create(
         :provider => 'facebook',
@@ -21,7 +21,7 @@ namespace :db do
     end
 
     # Create tags
-    25.times do |i|
+    10.times do |i|
       created_at = Populator.value_in_range(1.year.ago..Time.now)
       Tag.create(
         :name => Populator.words(1),
@@ -32,7 +32,7 @@ namespace :db do
 
     # Create questions
     @users = User.all
-    100.times do |i|
+    25.times do |i|
         user = @users.sample
         created_at = Populator.value_in_range(user.created_at..Time.now.to_datetime)
         user.questions.create(
@@ -44,7 +44,7 @@ namespace :db do
 
     # Create attempts
     @questions = Question.all
-    150.times do |i| 
+    50.times do |i| 
       user = @users.sample
       question = @questions.sample
       earliest_time = [user.created_at, question.created_at].max
@@ -61,7 +61,7 @@ namespace :db do
     
     # Create questions_tags entries
     @tags = Tag.all
-    75.times do |i|
+    50.times do |i|
       question = @questions.sample
       tag = @tags.sample
       question.tags << tag

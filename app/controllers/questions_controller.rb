@@ -2,6 +2,7 @@ class QuestionsController < ApplicationController
   # GET /questions
   # GET /questions.json
   def index
+    @tags = Tag.all
     @questions = Question.all
 
     respond_to do |format|
@@ -13,6 +14,7 @@ class QuestionsController < ApplicationController
   # GET /questions/1
   # GET /questions/1.json
   def show
+    @tags = Tag.all
     @question = Question.find(params[:id])
 
     respond_to do |format|
@@ -24,6 +26,7 @@ class QuestionsController < ApplicationController
   # GET /questions/new
   # GET /questions/new.json
   def new
+    @tags = Tag.all
     @question = Question.new
 
     respond_to do |format|
@@ -34,12 +37,14 @@ class QuestionsController < ApplicationController
 
   # GET /questions/1/edit
   def edit
+    @tags = Tag.all
     @question = Question.find(params[:id])
   end
 
   # POST /questions
   # POST /questions.json
   def create
+    @tags = Tag.all
     @question = Question.new(params[:question])
 
     respond_to do |format|
@@ -56,6 +61,7 @@ class QuestionsController < ApplicationController
   # PUT /questions/1
   # PUT /questions/1.json
   def update
+    @tags = Tag.all
     @question = Question.find(params[:id])
 
     respond_to do |format|
@@ -72,6 +78,7 @@ class QuestionsController < ApplicationController
   # DELETE /questions/1
   # DELETE /questions/1.json
   def destroy
+    @tags = Tag.all
     @question = Question.find(params[:id])
     @question.destroy
 
