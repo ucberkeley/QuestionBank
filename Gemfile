@@ -24,7 +24,7 @@ group :assets do
   gem 'sass-rails'
   gem 'coffee-rails'
   gem 'uglifier'
-  gem "twitter-bootstrap-rails", :platform => :ruby
+  gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
   gem "therubyracer"
 end
 gem "omniauth"
