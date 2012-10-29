@@ -33,7 +33,7 @@ group :test, :development do
 end
 
 group :production do
-#  gem 'psql'
+  gem 'pg'
 end
 
 
