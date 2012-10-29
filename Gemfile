@@ -13,11 +13,6 @@ group :development, :test do
 	gem "launchy"
 	gem "capybara"
 	gem "factory_girl_rails"
-	gem "omniauth"
-	gem "omniauth-twitter"
-	gem "cancan"
-	gem "rolify"
-	gem "simple_form"
 	gem "quiet_assets"
 	gem 'sqlite3'
 	gem 'simplecov'
@@ -29,9 +24,14 @@ group :assets do
   gem 'sass-rails'
   gem 'coffee-rails'
   gem 'uglifier'
-  gem "twitter-bootstrap-rails"
+  gem "twitter-bootstrap-rails", :platform => :ruby
   gem "therubyracer"
 end
+gem "omniauth"
+gem "omniauth-twitter"
+gem "cancan"
+gem "rolify"
+gem "simple_form"
 gem 'jquery-rails'
 gem "thin"
 gem "haml"

@@ -226,7 +226,6 @@ DEPENDENCIES
   hpricot
   jquery-rails
   launchy
-  omniauth
   omniauth-twitter
   pg
   quiet_assets
