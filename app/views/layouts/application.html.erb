@@ -60,24 +60,19 @@
   <div class="modal-body">
     <form action="/questions/generate_quiz" class="form-horizontal">
       <div class="control-group">
-        <label class="control-label" for="inputEmail">Number of Questions</label>
+        <label class="control-label" for="num_questions">Number of Questions</label>
         <div class="controls">
-          <input type="text" id="inputEmail" placeholder="1 to 100">
+          <input type="text" id="num_questions" placeholder="1 to 100">
         </div>
       </div>
       <div class="control-group">
-        <div class="controls">
-          <div class="btn-group">
-            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-              Tags
-              <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu" style="z-index:1000">
+        <label class="control-label" for="topic">Topic</label>
+        <div class="controls">            
+            <select id="topic">
               <% @tags.each do |tag| %>
-                <li> <%= tag.name %> </li>
+                <option> <%= tag.name %> </option>
               <% end %>
-            </ul>
-          </div>
+            </select>
         </div>
       </div>
     </div>
