@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Store</title>
+  <title>Question Bank</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+  <!-- Gets rid of #_=_ in URL after facebook authenticates -->
   <script type="text/javascript">
     $(window).on('load', function(e) { 
     if (window.location.hash == '#_=_')
@@ -24,67 +25,95 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </a>
-        <a class="brand" href="#">Question Bank</a>
+        <a class="brand" href="/">Question Bank</a>
         <div class="nav-collapse">
           <ul class="nav">
-            <li><%= link_to "Answer Questions", questions_path%></li>
-            <li><%= link_to "Create Questions", questions_path %></li>
-            <li><a href="#generate-quiz-modal" role="button" data-show="false" data-toggle="modal">Generate Quiz</a></li>
+            <li><%= link_to "Answer Questions", questions_path %></li>
+            <li><%= link_to "Contribute Questions", new_question_path %></li>
+            <li><a href="#generate-quiz-modal" role="button" data-show="false" data-toggle="modal">Generate Quizzes</a></li>
           </ul>
+          <ul class="nav pull-right">
+          <% if current_user %>
+            <li>
+              <%= link_to user_path(current_user) do %>
+              Signed in as <strong><%= current_user.name %></strong>
+              <% end %>
+            </li>
+            <li><%= link_to "Sign out", signout_path, id: "sign_out" %></li>
+          <% else %>
+            <li>
+            <%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %>
+            </li>
+          <% end %>
+        </ul>
         </div>
       </div>
     </div>
   </div>
 
   <div class="container">
+
     <div class="row">
       <div class="span9"><%= yield %></div>
       <div class="span3">
-        <h2>About Us</h2>
-       	JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE
-       	JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE
-       	JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE
-       	JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE
-       	JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE
-       	JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE
-       	JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE JOE
+        <h2>About</h2>
+       	<p>
+          Question Bank is a source of questions for students and instructors alike.
+        </p>
+        <p>
+          If you are a student, you can use our <%= link_to "questions", questions_path %> as a resource for studying. 
+        </p>
+        <!-- TODO Need to make this second link to Generate a Quiz work -->
+        <p> 
+          If you are an educator, you can use our questions to instantly 
+          <a href="#generate-quiz-modal" role="button" data-show="false" data-toggle="modal">create quizzes and exams</a>. In return, you can 
+          <%= link_to "contribute questions", new_question_path %> 
+          of your own devising to the pool.
+        </p>
       </div>
     </div>
-  </div>
-
-  <div class="modal hide" id="generate-quiz-modal" tabindex="-1" role="dialog"  aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-      <h3 id="myModalLabel">Generate a Quiz</h3>
-    </div>
-  <div class="modal-body">
-    <form action="/questions/generate_quiz" class="form-horizontal">
-      <div class="control-group">
-        <label class="control-label" for="num_questions">Number of Questions</label>
-        <div class="controls">
-          <input type="text" id="num_questions" placeholder="1 to 100">
+    <!-- TODO Need to do validations on user-entered data (not blank, not illogical)-->
+    <div class="modal hide" id="generate-quiz-modal" tabindex="-1" role="dialog"
+    aria-labelledby="generate-quiz-modal-label" aria-hidden="true">
+      <%= form_tag(questions_path, :method => "get", :class => "form-horizontal") do %>
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+            ×
+          </button>
+          <h3 id="generate-quiz-modal-label">Generate a Quiz</h3>
         </div>
-      </div>
-      <div class="control-group">
-        <label class="control-label" for="topic">Topic</label>
-        <div class="controls">            
-            <select id="topic">
-              <% @tags.each do |tag| %>
+        <div class="modal-body">
+          <div class="control-group">
+            <label class="control-label" for="number_of_questions">
+              Number of Questions
+            </label>
+            <div class="controls">
+              <input type="text" name="number_of_questions">
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" for="tag">Tag</label>
+            <div class="controls">            
+              <select name="tag">
+                <% @tags.each do |tag| %>
                 <option> <%= tag.name %> </option>
-              <% end %>
-            </select>
+                <% end %>
+              </select>
+            </div>
+          </div>
+        </div> 
+        <div class="modal-footer">
+          <button class="btn pull-right" data-dismiss="modal" aria-hidden="true">
+            Cancel
+          </button>
+          <input type="submit" class="btn btn-primary pull-left" value="Create Quiz" />
         </div>
-      </div>
+      <% end %>      
     </div>
-      <div class="modal-footer">
-        <button class="btn pull-right" data-dismiss="modal" aria-hidden="true">
-          Cancel
-        </button>
-        <button class="btn btn-primary pull-left">Create Quiz</button>
-      </div>
-    </div>
-    </form>
+
+    <footer style="text-align:center; margin-top: 252px;">
+      <p>© 2012 <a href="">Question Bank</a></p>
+    </footer>
   </div>
-</div>
 </body>
 </html>

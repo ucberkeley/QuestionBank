@@ -2,19 +2,27 @@ class QuestionsController < ApplicationController
   # GET /questions
   # GET /questions.json
   def index
-    @tags = Tag.all
-    @questions = Question.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @questions }
+    # Displaying a quiz
+    if params[:number_of_questions] && params[:tag]
+      number_of_questions = params[:number_of_questions]
+      tag_name = params[:tag]
+      @questions = Question.get_quiz(number_of_questions, tag_name)
+    else
+      # Default 
+      @questions = Question.all
     end
+
+    # Don't exactly understand this, but it was hiding results.
+    # (Also, the parameters are not ultimately appearing in the URL.)
+    #respond_to do |format|
+    #  format.html # index.html.erb
+    #  format.json { render json: @questions }
+    #end
   end
 
   # GET /questions/1
   # GET /questions/1.json
   def show
-    @tags = Tag.all
     @question = Question.find(params[:id])
 
     respond_to do |format|
@@ -26,8 +34,20 @@ class QuestionsController < ApplicationController
   # GET /questions/new
   # GET /questions/new.json
   def new
-    @tags = Tag.all
     @question = Question.new
+    
+    # Briefly played around with this, didn't seem to work completely
+    #puts @question
+    #@question.user_id = params[:user_id]
+    #puts @question.user_id
+    #@question.xml = params[:xml]
+    #tag = Tag.find_or_create_by_name(params[:tag])
+    #@question.tags << tag
+    #if @question.save
+    #  flash[:notice] = "Question was successfully added."
+    #else
+    #  flash[:notice] = "An error occured. Your question was not added."
+    #end
 
     respond_to do |format|
       format.html # new.html.erb
@@ -37,14 +57,12 @@ class QuestionsController < ApplicationController
 
   # GET /questions/1/edit
   def edit
-    @tags = Tag.all
     @question = Question.find(params[:id])
   end
 
   # POST /questions
   # POST /questions.json
   def create
-    @tags = Tag.all
     @question = Question.new(params[:question])
 
     respond_to do |format|
@@ -61,7 +79,6 @@ class QuestionsController < ApplicationController
   # PUT /questions/1
   # PUT /questions/1.json
   def update
-    @tags = Tag.all
     @question = Question.find(params[:id])
 
     respond_to do |format|
@@ -78,7 +95,6 @@ class QuestionsController < ApplicationController
   # DELETE /questions/1
   # DELETE /questions/1.json
   def destroy
-    @tags = Tag.all
     @question = Question.find(params[:id])
     @question.destroy
 

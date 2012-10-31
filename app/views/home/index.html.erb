@@ -1,37 +1,31 @@
 <div class="container">
-      <div class="row">
-        <!-- Main hero unit for a primary marketing message or call to action -->
-        <div class="well span3">
-          <form class="form-stacked" id="sign-in-form">
-            <h2>Sign In</h2>
-            <div class="cleaner_h20"></div>
-             <div id="user_nav">
-      			  <% if current_user %>
-      			    Signed in as <strong><%= current_user.name %></strong>!
-      			    <%= link_to "Sign out", signout_path, id: "sign_out" %>
-      			  <% else %>
-      			    <%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %>
-      			  <% end %>
-      			</div> 
-            <div class="fb-login-button" data-show-faces="true" data-width="270" data-max-rows="1"></div>
-            <div id="fb-root"></div>
-              <script>
-              (function(d, s, id) {
-                var js, fjs = d.getElementsByTagName(s)[0];
-                if (d.getElementById(id)) return;
-                js = d.createElement(s); js.id = id;
-                js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=412110575521736";
-                fjs.parentNode.insertBefore(js, fjs);
-              }(document, 'script', 'facebook-jssdk'));
-              </script>           
-          </form>
-        </div>
-      </div>
-      <div class="cleaner"></div>
-      
-
-      <footer style="text-align:center; margin-top: 252px;">
-        <p>© Company 2012 <a href="">Question Bank</a></p>
-      </footer>
-
+  <div class="row">
+    <!-- Main hero unit for a primary marketing message or call to action -->
+      <div class="well span3">
+      <form class="form-stacked" id="sign-in-form">
+        <h2>Sign In</h2>
+        <div class="cleaner_h20"></div>
+        <div id="user_nav">
+      	  <% if current_user %>
+      	  Signed in as <strong><%= current_user.name %></strong>!
+      	  <%= link_to "Sign out", signout_path, id: "sign_out" %>
+      	  <% else %>
+      	  <%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %>
+      	  <% end %>
+      	</div> 
+        <div class="fb-login-button" data-show-faces="true" data-width="270" data-max-rows="1"></div>
+        <div id="fb-root"></div>
+        <script>
+          (function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=412110575521736";
+          fjs.parentNode.insertBefore(js, fjs);
+          }(document, 'script', 'facebook-jssdk'));
+        </script>           
+      </form>
     </div>
+  </div>
+  <div class="cleaner"></div>
+</div>

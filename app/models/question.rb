@@ -4,26 +4,15 @@ class Question < ActiveRecord::Base
   belongs_to :user
   has_many   :users, :through => :attempts
 
-  #
-  def generate_quiz(tags, number)
-  	questions = []
-  	results   = []
-  	tags.each do |tag|
-  		questions << Question.find_by_tag(tag).all
-  	end
-  	num_categories = questions.length 
-  	num_per_category = number/num_categories
-  		
-  	if questions.flatten.length < number
-  		#abandon ship
-  	end
-
-  	#not quite robust enough
-  	#while(results.length < number){
-	  	questions.each{|question|
-	  		results << (question.length >= num_per_category) ? question.slice(num_per_category) : question.slice(question.length)
-	  	}
-	  	results.flatten
-	#}
+  # TODO Need to do validations
+  def self.get_quiz(number_of_questions, tag_name)
+    # Wonder if there is a cleaner way to do this
+    all_tagged_questions = Question.all(:include => :tags, :conditions => ["tags.name = ?", tag_name])
+    if number_of_questions.empty?
+      return all_tagged_questions.take([all_tagged_questions.length, 5].min)
+    else
+      return all_tagged_questions.take([all_tagged_questions.length, Integer(number_of_questions)].min)
+    end
   end
+
 end

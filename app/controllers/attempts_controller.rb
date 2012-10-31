@@ -2,7 +2,6 @@ class AttemptsController < ApplicationController
   # GET /attempts
   # GET /attempts.json
   def index
-    @tags = Tag.all
     @attempts = Attempt.all
 
     respond_to do |format|
@@ -14,7 +13,6 @@ class AttemptsController < ApplicationController
   # GET /attempts/1
   # GET /attempts/1.json
   def show
-    @tags = Tag.all
     @attempt = Attempt.find(params[:id])
 
     respond_to do |format|
@@ -26,7 +24,6 @@ class AttemptsController < ApplicationController
   # GET /attempts/new
   # GET /attempts/new.json
   def new
-    @tags = Tag.all
     @attempt = Attempt.new
 
     respond_to do |format|
@@ -37,14 +34,12 @@ class AttemptsController < ApplicationController
 
   # GET /attempts/1/edit
   def edit
-    @tags = Tag.all
     @attempt = Attempt.find(params[:id])
   end
 
   # POST /attempts
   # POST /attempts.json
   def create
-    @tags = Tag.all
     @attempt = Attempt.new(params[:attempt])
 
     respond_to do |format|
@@ -61,7 +56,6 @@ class AttemptsController < ApplicationController
   # PUT /attempts/1
   # PUT /attempts/1.json
   def update
-    @tags = Tag.all
     @attempt = Attempt.find(params[:id])
 
     respond_to do |format|
@@ -78,7 +72,6 @@ class AttemptsController < ApplicationController
   # DELETE /attempts/1
   # DELETE /attempts/1.json
   def destroy
-    @tags = Tag.all 
     @attempt = Attempt.find(params[:id])
     @attempt.destroy
 

@@ -65,7 +65,6 @@ namespace :db do
       question = @questions.sample
       tag = @tags.sample
       question.tags << tag
-      tag.questions << question
     end
 
   end

@@ -4,6 +4,13 @@
 </div>
 
 <dl class="dl-horizontal">
+  <dt> Question </dt>
+    <dd> <%= @question.xml if @question.xml %> </dd>
+    <dt> Author </dt>
+    <dd> 
+      <%= link_to(@question.user.name, user_path(@question.user)) if 
+        @question.user %>
+    </dd>
 </dl>
 
 <div class="form-actions">
