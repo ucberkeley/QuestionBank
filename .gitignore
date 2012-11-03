@@ -11,8 +11,10 @@ capybara-*.html
 /public/system/*
 /coverage/
 /spec/tmp/*
+features/support/env.rb~
+test/test_helper.rb~
 **.orig
 rerun.txt
 pickle-email-*.html
-
+Gemfile~
 .DS_Store

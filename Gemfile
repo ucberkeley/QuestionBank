@@ -30,6 +30,8 @@ group :test, :development do
   gem 'launchy'          # a useful debugging aid for user stories
   gem 'populator'
   gem 'faker'
+  gem "rspec-rails", "~> 2.0" # RSPEC testing
+
 end
 
 group :production do
@@ -40,6 +42,9 @@ end
 gem 'omniauth-facebook'
 gem 'omniauth'
 gem 'jquery-rails'
+
+# SimpleCov
+gem 'simplecov', :require => false, :group => :test
 
 # Use unicorn as the web server
 # gem 'unicorn'
