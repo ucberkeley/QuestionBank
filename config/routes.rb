@@ -1,4 +1,6 @@
 QuestionBank::Application.routes.draw do
+  resources :attempts
+
   resources :questions
 
   root :to => "home#index"

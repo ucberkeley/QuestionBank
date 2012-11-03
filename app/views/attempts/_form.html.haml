@@ -1,0 +1,12 @@
+= simple_form_for(@attempt) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :answer
+    = f.input :is_correct
+    = f.input :created_at
+    = f.association :question
+    = f.association :user
+
+  .form-actions
+    = f.button :submit

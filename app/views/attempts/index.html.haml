@@ -1,0 +1,27 @@
+%h1 Listing attempts
+
+%table
+  %tr
+    %th Answer
+    %th Is correct
+    %th Created at
+    %th Question
+    %th User
+    %th
+    %th
+    %th
+
+  - @attempts.each do |attempt|
+    %tr
+      %td= attempt.answer
+      %td= attempt.is_correct
+      %td= attempt.created_at
+      %td= attempt.question
+      %td= attempt.user
+      %td= link_to 'Show', attempt
+      %td= link_to 'Edit', edit_attempt_path(attempt)
+      %td= link_to 'Destroy', attempt, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Attempt', new_attempt_path

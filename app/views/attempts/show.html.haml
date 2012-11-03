@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b Answer:
+  = @attempt.answer
+%p
+  %b Is correct:
+  = @attempt.is_correct
+%p
+  %b Created at:
+  = @attempt.created_at
+%p
+  %b Question:
+  = @attempt.question
+%p
+  %b User:
+  = @attempt.user
+
+= link_to 'Edit', edit_attempt_path(@attempt)
+\|
+= link_to 'Back', attempts_path
