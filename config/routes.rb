@@ -1,4 +1,6 @@
 QuestionBank::Application.routes.draw do
+  resources :tags
+
   resources :attempts
 
   resources :questions

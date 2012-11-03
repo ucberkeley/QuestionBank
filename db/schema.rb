@@ -11,12 +11,30 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121028105001) do
+ActiveRecord::Schema.define(:version => 20121103191628) do
+
+  create_table "attempts", :force => true do |t|
+    t.text     "answer"
+    t.boolean  "is_correct"
+    t.datetime "created_at",  :null => false
+    t.integer  "question_id"
+    t.integer  "user_id"
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "attempts", ["question_id"], :name => "index_attempts_on_question_id"
+  add_index "attempts", ["user_id"], :name => "index_attempts_on_user_id"
 
   create_table "questions", :force => true do |t|
     t.text     "xml"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "user_id"
+  end
+
+  create_table "questions_tags", :id => false, :force => true do |t|
+    t.integer "question_id"
+    t.integer "tag_id"
   end
 
   create_table "roles", :force => true do |t|
@@ -29,6 +47,12 @@ ActiveRecord::Schema.define(:version => 20121028105001) do
 
   add_index "roles", ["name", "resource_type", "resource_id"], :name => "index_roles_on_name_and_resource_type_and_resource_id"
   add_index "roles", ["name"], :name => "index_roles_on_name"
+
+  create_table "tags", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "name"
