@@ -1,4 +1,4 @@
-%h1 Listing questions
+%h1 Quiz
 
 %table.table.table-striped
   %tr
@@ -12,7 +12,7 @@
     %tr
       %td= question.xml
       %td= question.created_at
-      %td= question.tags.reduce('') do |sum, tag| tag.name + ' ' +sum end
+      %td= question.tags
       %td
         = link_to 'Show', question, :class => 'btn btn-mini'
         = link_to 'Edit', edit_question_path(question), :class => 'btn btn-mini'

@@ -80,4 +80,22 @@ class QuestionsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def prepare_quiz
+    @tags = Tag.all
+  end
+
+  def generate_quiz
+    if params[:question]['number_of_questions'].empty?
+      number_of_questions = 5
+    end
+    tag_id = params[:question]['tag']
+    redirect_to show_quiz_path(number_of_questions, tag_id)
+  end
+
+  def show_quiz
+      number_of_questions = params[:number_of_questions]
+      tag_id = params[:tag]
+      @questions = Question.get_quiz(tag_id, number_of_questions)
+  end
 end

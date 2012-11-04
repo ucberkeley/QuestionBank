@@ -1,0 +1,7 @@
+%h1 Generate a quiz
+= simple_form_for :question do |f|
+	.form-inputs
+		= f.input :tag, :collection => @tags
+		= f.input :number_of_questions
+	.form-actions
+		= f.button :submit
