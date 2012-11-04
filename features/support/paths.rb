@@ -9,6 +9,7 @@ module NavigationHelpers
     case page_name
 
     when /^the home\s?page$/ then '/'
+    when /^add question page$/ then '/questions/new'
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
