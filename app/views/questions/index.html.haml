@@ -1,10 +1,10 @@
 %h1 Listing questions
 
-%table
+%table.table.table-
   %tr
     %th Xml
     %th Created at
-    %th
+    %th Tags
     %th
     %th
 
@@ -12,10 +12,12 @@
     %tr
       %td= question.xml
       %td= question.created_at
-      %td= link_to 'Show', question
-      %td= link_to 'Edit', edit_question_path(question)
-      %td= link_to 'Destroy', question, method: :delete, data: { confirm: 'Are you sure?' }
+      %td= question.tags
+      %td
+        = link_to 'Show', question, :class => 'btn btn-mini'
+        = link_to 'Edit', edit_question_path(question), :class => 'btn btn-mini'
+        = link_to 'Destroy', question, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini'
 
 %br
 
-= link_to 'New Question', new_question_path
+.btn= link_to 'New Question', new_question_path

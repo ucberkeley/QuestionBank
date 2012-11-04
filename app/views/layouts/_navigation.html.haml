@@ -2,7 +2,8 @@
 %ul.nav
 	%li= link_to 'Questions', questions_path
 	%li= link_to 'Attempts', attempts_path
-	%li= link_to 'Tags', attempts_path
+	%li= link_to 'Tags', tags_path
+%ul.nav.pull-right
 	- if user_signed_in?
 		%li= link_to 'Logout', signout_path
 		-if current_user.has_role? :admin
