@@ -10,12 +10,12 @@ Scenario: An instructor is allowed to generate a quiz
 Given I am logged in as an instructor
 #Then show me the page
 When I try to generate a quiz
-Then I should see "Generate a Quiz"
+Then I should see "Generate a quiz"
 
 Scenario: An non-instructor is not allowed to generate a quiz
 Given I am logged in as a non-instructor
 When I try to generate a quiz
-Then I should see "Only instructors are allowed to generate quizzes."
+Then I should see an under-privileged error message
 
 Scenario: An instructor can control the length of the quiz
 Given I am logged in as an instructor

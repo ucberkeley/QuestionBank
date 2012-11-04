@@ -27,16 +27,16 @@ When /^I try to generate a quiz$/ do
 end
 
 When /^I try to generate a quiz with (\d+) questions$/ do |num_questions|
-    fill_in 'num_questions', :with => num_questions
+    fill_in 'question[number_of_questions]', :with => num_questions # Something's wrong here ...
+end
+
+When /^I try to generate a quiz with the topic "(.*?)"$/ do |tag|
+    select tag, :from => 'topic'
 end
 
 # this method needs to be implemented
 Then /^the quiz should have (\d+) questions$/ do |num_questions|
     body = page.body
-end
-
-When /^I try to generate a quiz with the topic "(.*?)"$/ do |tag|
-    select tag, :from => 'topic'
 end
 
 Then /^the quiz should have the topic "(.*?)"$/ do |tag|
@@ -45,4 +45,10 @@ Then /^the quiz should have the topic "(.*?)"$/ do |tag|
     else
         assert page.has_content?(tag)
     end
+end
+
+# filler step until feature is implemented
+Then /^I should see an under\-privileged error message$/ do
+  body = page.body
+#  page.should have_content "Only instructors are allowed to generate quizzes"
 end
