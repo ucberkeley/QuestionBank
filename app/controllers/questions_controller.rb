@@ -88,6 +88,8 @@ class QuestionsController < ApplicationController
   def generate_quiz
     if params[:question]['number_of_questions'].empty?
       number_of_questions = 5
+    else
+      number_of_questions = params[:question]['number_of_questions']
     end
     if params[:question]['tag'].empty?
       redirect_to prepare_quiz_path, :alert => 'Please provide a tag' and return
