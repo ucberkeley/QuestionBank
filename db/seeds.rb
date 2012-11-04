@@ -5,3 +5,25 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+
+# FIX ME : Add tables' rows by filling these in.
+
+# Questions
+
+
+# Attempts
+
+
+# Tags
+
+
+
+# Users
+
+
+
+# Roles
+
+
+# Abilities
