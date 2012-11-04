@@ -1,5 +1,5 @@
-%h1 Generate a quiz
-= simple_form_for :question do |f|
+%h3 Generate a quiz
+= simple_form_for :question, :html => {:class => 'form-horizontal' } do |f|
 	.form-inputs
 		= f.input :tag, :collection => @tags
 		= f.input :number_of_questions
