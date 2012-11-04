@@ -8,7 +8,7 @@ Given that the app is set up
 
 Scenario: An instructor is allowed to generate a quiz
 Given I am logged in as an instructor
-Then show me the page
+#Then show me the page
 When I try to generate a quiz
 Then I should see "Generate a Quiz"
 

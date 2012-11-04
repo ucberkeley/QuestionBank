@@ -167,9 +167,9 @@ Then /^all attachments should not be blank$/ do
   end
 end
 
-Then /^show me a list of email attachments$/ do
-  EmailSpec::EmailViewer::save_and_open_email_attachments_list(current_email)
-end
+#Then /^show me a list of email attachments$/ do
+#  EmailSpec::EmailViewer::save_and_open_email_attachments_list(current_email)
+#end
 
 #
 # Interact with Email Contents
