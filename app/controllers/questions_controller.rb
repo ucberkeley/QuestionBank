@@ -89,6 +89,9 @@ class QuestionsController < ApplicationController
     if params[:question]['number_of_questions'].empty?
       number_of_questions = 5
     end
+    if params[:question]['tag'].empty?
+      redirect_to prepare_quiz_path, :alert => 'Please provide a tag' and return
+    end
     tag_id = params[:question]['tag']
     redirect_to show_quiz_path(number_of_questions, tag_id)
   end
