@@ -12,6 +12,12 @@ Given /^that the app is set up$/ do
     question2.tags << tag2
 end    
 
+Given /^I added a question with content "(.*?)"$/ do |question_xml|
+    visit path_to("the new question page")
+    fill_in 'question_xml', :with => question_xml
+    click_button 'Create Question'
+end
+
 # filler method until feature is implemented
 Given /^I am logged in as an instructor$/ do
     visit path_to("the homepage")

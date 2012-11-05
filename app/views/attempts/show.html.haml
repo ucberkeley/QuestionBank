@@ -9,10 +9,10 @@
   = @attempt.created_at
 %p
   %b Question:
-  = @attempt.question
+  = @attempt.question.xml
 %p
   %b User:
-  = @attempt.user
+  = @attempt.user.name
 
 = link_to 'Edit', edit_attempt_path(@attempt)
 \|
