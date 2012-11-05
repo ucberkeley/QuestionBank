@@ -9,15 +9,13 @@ Given that the app is set up
 Scenario: A logged in user can generate a quiz
 Given I am logged in
 And I am on the homepage
-Then I should see "Generate a quiz"
-When I follow "Generate a quiz"
+And I try to generate a quiz
 Then I should see "Number of questions"
 
 Scenario: Anonymous user should not be able to genreate a quiz
 Given I am not logged in
 And I am on the homepage
-Then I should see "Generate a quiz"
-When I follow "Generate a quiz"
+And I try to generate a quiz
 Then I should see "Please log in first"
 
 Scenario: An instructor can choose a topic for a quiz
