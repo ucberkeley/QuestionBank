@@ -17,7 +17,7 @@
       %td= attempt.is_correct
       %td= attempt.created_at
       %td= attempt.question.xml
-      %td= attempt.user
+      %td= attempt.user.name
       %td= link_to 'Show', attempt
       %td= link_to 'Edit', edit_attempt_path(attempt)
       %td= link_to 'Destroy', attempt, method: :delete, data: { confirm: 'Are you sure?' }
