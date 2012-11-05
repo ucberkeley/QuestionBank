@@ -4,6 +4,10 @@ Feature: Contribute a question to the system
 	So that I can share my knowledge
 	I want to add a question to the bank
 
+Scenario: A user can view questions
+	Given I am on the questions page
+	Then I should see "Listing questions"
+	
 Scenario: Add a new question
 	Given I am on add question page
 	Then I should see "New question"
