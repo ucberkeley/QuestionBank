@@ -9,7 +9,6 @@ module NavigationHelpers
     case page_name
 
     when /^the home\s?page$/ then '/'
-    when /^add question page$/ then '/questions/new'
     when /^the quiz generation page$/ then '/questions/quiz/new'
 
     # Add more mappings here.
