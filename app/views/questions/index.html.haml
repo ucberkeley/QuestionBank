@@ -1,9 +1,9 @@
-%h1 Listing questions
+%h1 Questions
 
 %table.table.table-striped
   %tr
-    %th Xml
-    %th Created at
+    %th XML
+    %th Created
     %th Tags
     %th
     %th
@@ -11,8 +11,8 @@
   - @questions.each do |question|
     %tr
       %td= question.xml
-      %td= question.created_at
-      %td= question.tags.reduce('') do |sum, tag| tag.name + ' ' +sum end
+      %td= question.created_at.strftime("%B %e, %Y")
+      %td= question.tags.reduce('') do |sum, tag| tag.name + ', ' + sum end.slice(0..-3)
       %td
         = link_to 'Show', question, :class => 'btn btn-mini'
         = link_to 'Edit', edit_question_path(question), :class => 'btn btn-mini'

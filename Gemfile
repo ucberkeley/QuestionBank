@@ -18,15 +18,18 @@ group :development, :test do
 	gem 'sqlite3'
 	gem 'simplecov', :require => false
 end
+
 group :production do
-  gem 'pg'
+  	gem 'pg'
 end
+
 group :assets do
-  gem 'less-rails'
-  gem 'coffee-rails'
-  gem 'uglifier'
-  gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
+  	gem 'less-rails'
+  	gem 'coffee-rails'
+  	gem 'uglifier'
+  	gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 end
+
 gem "therubyracer"
 gem "omniauth"
 gem "omniauth-twitter"
