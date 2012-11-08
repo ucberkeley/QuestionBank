@@ -11,7 +11,7 @@
   - @questions.each do |question|
     %tr
       %td= question.xml
-      %td= question.created_at.strftime("%B %e, %Y")
+      %td= format_date(question.created_at)
       %td= question.tags.reduce('') do |sum, tag| tag.name + ', ' + sum end.slice(0..-3)
       %td
         = link_to 'Show', question, :class => 'btn btn-mini'
