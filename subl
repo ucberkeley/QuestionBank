@@ -1,0 +1,127 @@
+diff --git a/app/views/layouts/_navigation.html.haml b/app/views/layouts/_navigation.html.haml
+index d445af3..106384c 100644
+--- a/app/views/layouts/_navigation.html.haml
++++ b/app/views/layouts/_navigation.html.haml
+@@ -3,7 +3,7 @@
+ 	%li= link_to 'Questions', questions_path
+ 	%li= link_to 'Tags', tags_path
+ 	%li= link_to 'Attempts', attempts_path
+-	%li= link_to 'Quizzes', prepare_quiz_path
++	%li= link_to 'Generate Quiz', prepare_quiz_path
+ %ul.nav.pull-right
+ 	- if user_signed_in?
+ 		%li= link_to 'Logout', signout_path
+diff --git a/app/views/questions/show_quiz.html.haml b/app/views/questions/show_quiz.html.haml
+index 83a110d..1a24ff3 100644
+--- a/app/views/questions/show_quiz.html.haml
++++ b/app/views/questions/show_quiz.html.haml
+@@ -3,20 +3,17 @@
+ %table.table.table-striped
+   %tr
+     %th XML
+-    %th Created
+     %th Tags
+-    %th
++    %th Created
++
+ 
+   - @questions.each do |question|
+     %tr
+       %td= question.xml
++      %td= question.tags.reduce('') do |sum, tag| tag.name + ', ' + sum end.slice(0..-3)
+       %td= format_date(question.created_at)
+-      %td= question.tags
+-      %td
+-        = link_to 'View', question, :class => 'btn btn-mini'
+-        = link_to 'Edit', edit_question_path(question), :class => 'btn btn-mini'
+-        = link_to 'Destroy', question, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini'
++
+ 
+ %br
+ 
+-.btn= link_to 'New Quiz', new_question_path
++.btn= link_to 'New Quiz', prepare_quiz_path
+diff --git a/features/attempts.feature b/features/attempts.feature
+index 1065201..68ab4d8 100644
+--- a/features/attempts.feature
++++ b/features/attempts.feature
+@@ -11,11 +11,11 @@ Background:
+ Scenario: A user can answer a question correctly
+ 	Given I am logged in
+ 	Given I am on the new attempt page
+-	Then I should see "New attempt"
++	Then I should see "New Attempt"
+ 	When I fill in "attempt_answer" with "An answer."
+ 	And I check "attempt_is_correct"
+ 	
+ Scenario: A user can answer a question incorrectly
+ 	Given I am logged in
+ 	Given I am on the new attempt page
+-	Then I should see "New attempt"
+\ No newline at end of file
++	Then I should see "New Attempt"
+\ No newline at end of file
+diff --git a/features/questions.feature b/features/questions.feature
+index e5c7954..82a5329 100644
+--- a/features/questions.feature
++++ b/features/questions.feature
+@@ -6,11 +6,11 @@ Feature: Contribute a question to the system
+ 
+ Scenario: A user can view questions
+ 	Given I am on the questions page
+-	Then I should see "Listing questions"
++	Then I should see "Questions"
+ 	
+ Scenario: Add a new question
+ 	Given I am on the new question page
+-	Then I should see "New question"
++	Then I should see "New Question"
+ 	When I fill in "question_xml" with "A sample question"
+ 	And press "Create Question"
+ 	Then I should see "Question was successfully created."
+diff --git a/features/quiz.feature b/features/quiz.feature
+index cc1f9d4..ac4c645 100644
+--- a/features/quiz.feature
++++ b/features/quiz.feature
+@@ -10,7 +10,7 @@ Scenario: A logged-in user can generate a quiz
+ Given I am logged in
+ And I am on the homepage
+ And I try to generate a quiz
+-Then I should see "Number of questions"
++Then I should see "Number of Questions"
+ 
+ Scenario: Anonymous user should not be able to generate a quiz
+ Given I am not logged in
+@@ -22,10 +22,10 @@ Scenario: A logged-in can choose a topic for a quiz
+ Given I am logged in
+ And I am on the quiz generation page
+ Then I should see "Tag"
+-And I should see "Number of questions"
++And I should see "Number of Questions"
+ When I select "philosophy" from "question_tag"
+ And I fill in "question_number_of_questions" with "7"
+-And I press "Save Question"
++And I press "Generate Quiz"
+ Then I should see "What is the meaning of life?"
+ And I should see "philosophy"
+ 
+@@ -34,5 +34,5 @@ Scenario: A user cannot generate a quiz without a topic
+ Given I am logged in
+ And I am on the quiz generation page
+ When I fill in "question[number_of_questions]" with "5"
+-And I press "Save Question"
++And I press "Generate Quiz"
+ Then I should see "Please provide a tag"
+diff --git a/features/step_definitions/question_bank_steps.rb b/features/step_definitions/question_bank_steps.rb
+index a5199f5..aff2e8c 100755
+--- a/features/step_definitions/question_bank_steps.rb
++++ b/features/step_definitions/question_bank_steps.rb
+@@ -29,7 +29,7 @@ Given /^I am logged in as a non\-instructor$/ do
+ end
+ 
+ When /^I try to generate a quiz$/ do
+-    click_on "Generate a quiz"
++    click_on "Generate Quiz"
+ end
+ 
+ When /^I try to generate a quiz with (\d+) questions$/ do |num_questions|

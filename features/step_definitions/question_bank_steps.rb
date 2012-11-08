@@ -29,7 +29,7 @@ Given /^I am logged in as a non\-instructor$/ do
 end
 
 When /^I try to generate a quiz$/ do
-    click_on "Generate a quiz"
+    click_on "Generate Quiz"
 end
 
 When /^I try to generate a quiz with (\d+) questions$/ do |num_questions|

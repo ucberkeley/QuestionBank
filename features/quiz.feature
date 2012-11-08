@@ -10,7 +10,7 @@ Scenario: A logged-in user can generate a quiz
 Given I am logged in
 And I am on the homepage
 And I try to generate a quiz
-Then I should see "Number of questions"
+Then I should see "Number of Questions"
 
 Scenario: Anonymous user should not be able to generate a quiz
 Given I am not logged in
@@ -22,10 +22,10 @@ Scenario: A logged-in can choose a topic for a quiz
 Given I am logged in
 And I am on the quiz generation page
 Then I should see "Tag"
-And I should see "Number of questions"
+And I should see "Number of Questions"
 When I select "philosophy" from "question_tag"
 And I fill in "question_number_of_questions" with "7"
-And I press "Save Question"
+And I press "Generate Quiz"
 Then I should see "What is the meaning of life?"
 And I should see "philosophy"
 
@@ -34,5 +34,5 @@ Scenario: A user cannot generate a quiz without a topic
 Given I am logged in
 And I am on the quiz generation page
 When I fill in "question[number_of_questions]" with "5"
-And I press "Save Question"
+And I press "Generate Quiz"
 Then I should see "Please provide a tag"

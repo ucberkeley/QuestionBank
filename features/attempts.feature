@@ -11,11 +11,11 @@ Background:
 Scenario: A user can answer a question correctly
 	Given I am logged in
 	Given I am on the new attempt page
-	Then I should see "New attempt"
+	Then I should see "New Attempt"
 	When I fill in "attempt_answer" with "An answer."
 	And I check "attempt_is_correct"
 	
 Scenario: A user can answer a question incorrectly
 	Given I am logged in
 	Given I am on the new attempt page
-	Then I should see "New attempt"
+	Then I should see "New Attempt"
