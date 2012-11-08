@@ -1,23 +1,25 @@
-%h1 Questions
+%h3 Questions
+
+.btn= link_to 'New Question', new_question_path
+
+%br
+%br
 
 %table.table.table-striped
   %tr
     %th XML
-    %th Created
     %th Tags
-    %th
+    %th Created
     %th
 
   - @questions.each do |question|
     %tr
       %td= question.xml
-      %td= format_date(question.created_at)
       %td= question.tags.reduce('') do |sum, tag| tag.name + ', ' + sum end.slice(0..-3)
+      %td= format_date(question.created_at)
       %td
-        = link_to 'Show', question, :class => 'btn btn-mini'
-        = link_to 'Edit', edit_question_path(question), :class => 'btn btn-mini'
-        = link_to 'Destroy', question, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini'
+        = link_to 'Destroy', question, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini pull-right'
+        = link_to 'View', question, :class => 'btn btn-mini pull-right'
+        = link_to 'Edit', edit_question_path(question), :class => 'btn btn-mini pull-right'
 
 %br
-
-.btn= link_to 'New Question', new_question_path

@@ -1,27 +1,29 @@
-%h1 Listing attempts
+%h3 Attempts
+
+.btn= link_to 'New Attempt', new_attempt_path
+
+%br 
+%br
 
 %table.table.table-striped
   %tr
-    %th Answer
-    %th Is Correct?
-    %th Created
-    %th Question
     %th User
-    %th
-    %th
+    %th Question
+    %th Answer
+    %th Correct?
+    %th Created
     %th
 
   - @attempts.each do |attempt|
     %tr
+      %td= attempt.user.name
+      %td= attempt.question.xml
       %td= attempt.answer
       %td= attempt.is_correct
       %td= format_date(attempt.created_at)
-      %td= attempt.question.xml
-      %td= attempt.user.name
-      %td= link_to 'Show', attempt
-      %td= link_to 'Edit', edit_attempt_path(attempt)
-      %td= link_to 'Destroy', attempt, method: :delete, data: { confirm: 'Are you sure?' }
-
+      %td
+        = link_to 'Destroy', attempt, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini pull-right'
+        = link_to 'Edit', edit_attempt_path(attempt), :class => 'btn btn-mini pull-right'
+        = link_to 'View', attempt, :class => 'btn btn-mini pull-right'
+        
 %br
-
-.btn= link_to 'New Attempt', new_attempt_path

@@ -1,7 +1,7 @@
-%p
-  %b Name:
-  = @tag.name
-
 = link_to 'Edit', edit_tag_path(@tag)
-\|
-= link_to 'Back', tags_path
+\&nbsp;|&nbsp;
+= link_to 'Back to Tags', tags_path
+
+%dl
+  %dt Name
+  %dd= @tag.name

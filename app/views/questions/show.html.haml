@@ -1,10 +1,10 @@
-%p
-  %b Xml:
-  = @question.xml
-%p
-  %b Created at:
-  = @question.created_at
-
 = link_to 'Edit', edit_question_path(@question)
-\|
-= link_to 'Back', questions_path
+\&nbsp;|&nbsp; 
+= link_to 'Back to Questions', questions_path
+
+%dl
+  %dt XML
+  %dd= @question.xml
+  
+  %dt Created
+  %dd= format_date(@question.created_at)

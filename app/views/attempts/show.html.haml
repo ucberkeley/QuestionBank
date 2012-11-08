@@ -1,19 +1,19 @@
-%p
-  %b Answer:
-  = @attempt.answer
-%p
-  %b Is correct:
-  = @attempt.is_correct
-%p
-  %b Created at:
-  = @attempt.created_at
-%p
-  %b Question:
-  = @attempt.question.xml
-%p
-  %b User:
-  = @attempt.user.name
-
 = link_to 'Edit', edit_attempt_path(@attempt)
-\|
-= link_to 'Back', attempts_path
+\&nbsp;|&nbsp;
+= link_to 'Back to Attempts', attempts_path
+
+%dl
+  %dt Answer
+  %dd= @attempt.answer
+
+  %dt Correct?
+  %dd= @attempt.is_correct
+
+  %dt Created
+  %dd= format_date(@attempt.created_at)
+
+  %dt Question
+  %dd= @attempt.question.xml
+
+  %dt User
+  %dd= @attempt.user.name

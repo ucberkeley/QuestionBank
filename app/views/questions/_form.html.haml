@@ -2,9 +2,7 @@
   = f.error_notification
 
   .form-inputs
-    = f.input :xml
-    = f.input :created_at
+    = f.input :xml, :label => "XML"
     = f.association :tags
-
-  .form-actions
+    = f.input :created_at, :label => "Created"
     = f.button :submit

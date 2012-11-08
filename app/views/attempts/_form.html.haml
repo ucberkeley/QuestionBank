@@ -2,11 +2,9 @@
   = f.error_notification
 
   .form-inputs
-    = f.input :answer
-    = f.input :is_correct
-    = f.input :created_at
     = f.association :question
     = f.association :user
-
-  .form-actions
+    = f.input :answer
+    = f.input :is_correct, :label => "Correct?"
+    = f.input :created_at, :label => "Created"
     = f.button :submit

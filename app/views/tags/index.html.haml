@@ -1,19 +1,20 @@
-%h1 Listing tags
+%h3 Tags
+
+.btn= link_to 'New Tag', new_tag_path
+
+%br
+%br
 
 %table.table.table-striped
   %tr
     %th Name
     %th
-    %th
-    %th
 
   - @tags.each do |tag|
     %tr
       %td= tag.name
-      %td= link_to 'Show', tag
-      %td= link_to 'Edit', edit_tag_path(tag)
-      %td= link_to 'Destroy', tag, method: :delete, data: { confirm: 'Are you sure?' }
-
+      %td
+        = link_to 'Destroy', tag, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini pull-right'
+        = link_to 'Edit', edit_tag_path(tag), :class => 'btn btn-mini pull-right'
+        = link_to 'View', tag, :class => 'btn btn-mini pull-right'       
 %br
-
-.btn= link_to 'New Tag', new_tag_path
