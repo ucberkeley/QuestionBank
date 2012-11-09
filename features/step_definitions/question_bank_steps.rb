@@ -1,6 +1,4 @@
 Given /^that the app is set up$/ do
-    # create a user  
-    user = User.find_or_create_by_name("Chrissy")
     # create questions
     question1 = Question.find_or_create_by_xml("Why is the sky blue?")
     question2 = Question.find_or_create_by_xml("What is the meaning of life?")
@@ -10,6 +8,12 @@ Given /^that the app is set up$/ do
     # tag questions
     question1.tags << tag1
     question2.tags << tag2
+    # create user groups
+    UserGroup.find_or_create_by_name("CS169Fall2012")
+    UserGroup.find_or_create_by_name("CS111Fall2011")
+    # create question groups
+    QuestionGroup.find_or_create_by_name("Quiz 1")
+    QuestionGroup.find_or_create_by_name("Quiz 2")
 end    
 
 Given /^I added a question with content "(.*?)"$/ do |question_xml|
@@ -57,4 +61,12 @@ end
 Then /^I should see an under\-privileged error message$/ do
   body = page.body
 #  page.should have_content "Only instructors are allowed to generate quizzes"
+end
+
+Given /^I own the "(.*?)" "(.*?)"$/ do |resource_type, resource_name|
+    # filler
+end
+
+Then /^I should get a download with the filename "([^\"]*)"$/ do |filename|
+       page.response_headers['Content-Disposition'].should include("filename=\"#{filename}\"")
 end

@@ -13,6 +13,7 @@ module NavigationHelpers
     when /^add question page$/ then '/questions/new'
     when /^new attempt page$/ then '/attempt/new'
     when /^the quiz generation page$/ then '/questions/quiz/new'
+    when /^the analytics page$/ then '/queries/prepare_to_get_attempts'
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
