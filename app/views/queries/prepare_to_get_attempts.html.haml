@@ -1,0 +1,16 @@
+%p Download a CSV file with data regarding attempts to answer questions.
+%p Filter the data by a student group, a question group, or both.
+
+= form_tag('/queries/get_attempts') do
+	%table
+		%tr
+			%td= label_tag('user_group', 'Student Group')
+			%td
+			%td= label_tag('question_group', 'Question Group')
+		%tr
+			%td= select_tag('user_group', options_from_collection_for_select(@user_groups, 'id', 'name'))
+			%td= select_tag('operator', "<option value='and'>and</option><option value='or'>or</option>".html_safe)
+			%td= select_tag('question_group', options_from_collection_for_select(@question_groups, 'id', 'name'))
+		%tr
+			%td
+				%submit.btn Download

@@ -4,6 +4,7 @@
 	%li= link_to 'Tags', tags_path
 	%li= link_to 'Attempts', attempts_path
 	%li= link_to 'Generate Quiz', prepare_quiz_path
+	%li= link_to 'Download Data', '/queries/prepare_to_get_attempts'
 %ul.nav.pull-right
 	- if user_signed_in?
 		%li= link_to 'Logout', signout_path
