@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121109003546) do
+ActiveRecord::Schema.define(:version => 20121103191628) do
 
   create_table "attempts", :force => true do |t|
     t.text     "answer"
@@ -25,22 +25,11 @@ ActiveRecord::Schema.define(:version => 20121109003546) do
   add_index "attempts", ["question_id"], :name => "index_attempts_on_question_id"
   add_index "attempts", ["user_id"], :name => "index_attempts_on_user_id"
 
-  create_table "question_sets", :force => true do |t|
-    t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "questions", :force => true do |t|
     t.text     "xml"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.integer  "user_id"
-  end
-
-  create_table "questions_question_sets", :id => false, :force => true do |t|
-    t.integer "question_set_id", :null => false
-    t.integer "question_id",     :null => false
   end
 
   create_table "questions_tags", :id => false, :force => true do |t|
@@ -58,16 +47,6 @@ ActiveRecord::Schema.define(:version => 20121109003546) do
 
   add_index "roles", ["name", "resource_type", "resource_id"], :name => "index_roles_on_name_and_resource_type_and_resource_id"
   add_index "roles", ["name"], :name => "index_roles_on_name"
-
-  create_table "student_groups", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "student_groups_users", :id => false, :force => true do |t|
-    t.integer "student_group_id", :null => false
-    t.integer "user_id",          :null => false
-  end
 
   create_table "tags", :force => true do |t|
     t.string   "name"

@@ -1,8 +1,4 @@
 QuestionBank::Application.routes.draw do
-  resources :student_groups
-
-  resources :question_sets
-
   resources :tags
 
   resources :attempts
