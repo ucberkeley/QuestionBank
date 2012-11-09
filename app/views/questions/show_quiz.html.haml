@@ -4,15 +4,16 @@
   %tr
     %th XML
     %th Tags
-    %th Created
+    %th 
+      %span.pull-right Created
 
 
   - @questions.each do |question|
     %tr
       %td= question.xml
       %td= question.tags.reduce('') do |sum, tag| tag.name + ', ' + sum end.slice(0..-3)
-      %td= format_date(question.created_at)
-
+      %td
+        %span.pull-right= format_date(question.created_at)
 
 %br
 
