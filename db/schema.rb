@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121103191628) do
+ActiveRecord::Schema.define(:version => 20121109045247) do
 
   create_table "attempts", :force => true do |t|
     t.text     "answer"
@@ -25,11 +25,23 @@ ActiveRecord::Schema.define(:version => 20121103191628) do
   add_index "attempts", ["question_id"], :name => "index_attempts_on_question_id"
   add_index "attempts", ["user_id"], :name => "index_attempts_on_user_id"
 
+  create_table "question_groups", :force => true do |t|
+    t.string   "name"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "questions", :force => true do |t|
     t.text     "xml"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.integer  "user_id"
+  end
+
+  create_table "questions_question_groups", :id => false, :force => true do |t|
+    t.integer "question_group_id", :null => false
+    t.integer "question_id",       :null => false
   end
 
   create_table "questions_tags", :id => false, :force => true do |t|
@@ -54,6 +66,12 @@ ActiveRecord::Schema.define(:version => 20121103191628) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "user_groups", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "users", :force => true do |t|
     t.string   "name"
     t.string   "email"
@@ -69,5 +87,10 @@ ActiveRecord::Schema.define(:version => 20121103191628) do
   end
 
   add_index "users_roles", ["user_id", "role_id"], :name => "index_users_roles_on_user_id_and_role_id"
+
+  create_table "users_user_groups", :id => false, :force => true do |t|
+    t.integer "user_group_id", :null => false
+    t.integer "user_id",       :null => false
+  end
 
 end

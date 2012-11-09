@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   attr_accessible :provider, :uid, :name, :email
   has_many :questions
   has_many :attempts
+  has_and_belongs_to_many :user_groups
 
   def self.create_with_omniauth(auth)
     create! do |user|
