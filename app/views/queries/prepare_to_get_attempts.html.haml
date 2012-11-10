@@ -13,4 +13,4 @@
 			%td= select_tag('question_group', options_from_collection_for_select(@question_groups, 'id', 'name'))
 		%tr
 			%td
-				= submit_tag("Download", :class => "btn")
+				%button.btn{:type => 'submit', :id => 'download_data_submit'} Download

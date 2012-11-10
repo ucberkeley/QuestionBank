@@ -14,6 +14,7 @@ QuestionBank::Application.routes.draw do
   match '/questions/quiz/tag/:tag/num/:number_of_questions/show' => 'questions#show_quiz', :as => 'show_quiz'
 
   get '/queries/prepare_to_get_attempts' => 'queries#prepare_to_get_attempts', :as => 'prepare_to_get_attempts'
+  post '/queries/get_attempts' => 'queries#get_attempts'
 
   root :to => "home#index"
   resources :users, :only => [:index, :show, :edit, :update ]

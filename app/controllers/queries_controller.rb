@@ -8,11 +8,6 @@ class QueriesController < ApplicationController
     end
     user_group = params[:user_group]
     question_group = params[:question_group]
-    if params[:operator].equals('and')
-        
-    else
-
-    end
   end
 
   def prepare_to_get_attempts

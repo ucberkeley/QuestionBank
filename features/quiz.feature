@@ -25,7 +25,7 @@ Then I should see "Tag"
 And I should see "Number of Questions"
 When I select "philosophy" from "question_tag"
 And I fill in "question_number_of_questions" with "7"
-And I press "Generate Quiz"
+And I press "generate_quiz_submit"
 Then I should see "What is the meaning of life?"
 And I should see "philosophy"
 
@@ -34,5 +34,5 @@ Scenario: A user cannot generate a quiz without a topic
 Given I am logged in
 And I am on the quiz generation page
 When I fill in "question[number_of_questions]" with "5"
-And I press "Generate Quiz"
+And I press "generate_quiz_submit"
 Then I should see "Please provide a tag"
