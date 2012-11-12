@@ -38,7 +38,11 @@ When /^I try to generate a quiz with the topic "(.*?)"$/ do |tag|
     select tag, :from => 'topic'
 end
 
-# this method needs to be implemented
+Given /^PENDING/ do
+    pending
+end
+
+# filler step until feature is implemented
 Then /^the quiz should have (\d+) questions$/ do |num_questions|
     body = page.body
 end
@@ -51,9 +55,9 @@ Then /^the quiz should have the topic "(.*?)"$/ do |tag|
     end
 end
 
-# filler step until feature is implemented
 Then /^I should see an under\-privileged error message$/ do
-    body = page.body
+    pending
+    # body = page.body
     # page.should have_content "Only instructors are allowed to generate quizzes"
 end
 
@@ -62,9 +66,43 @@ Given /^the "(.*?)" "(.*?)" exists$/ do |resource_type, resource_name|
 end
 
 Given /^I own the "(.*?)" "(.*?)"$/ do |resource_type, resource_name|
-    #
+    pending
 end
 
 Then /^I should get a download with the filename "([^\"]*)"$/ do |filename|
+    pending
     # page.response_headers['Content-Disposition'].should include("filename=\"#{filename}\"")
 end
+
+Given /^"(.*?)" is in the group "(.*?)"$/ do |arg1, arg2|
+  pending # express the regexp above with the code you wish you had
+end
+
+Given /^I have no privileges in group "(.*?)"$/ do |arg1|
+  pending # express the regexp above with the code you wish you had
+end
+
+Given /^I try to view analytics of "(.*?)"$/ do |arg1|
+  pending # express the regexp above with the code you wish you had
+end
+
+Given /^I have "(.*?)" privilege in group "(.*?)"$/ do |arg1, arg2|
+  pending # express the regexp above with the code you wish you had
+end
+
+Given /^I assign "(.*?)" priviledge to "(.*?)"$/ do |arg1, arg2|
+  pending # express the regexp above with the code you wish you had
+end
+
+Then /^I should see "(.*?)" as a "(.*?)"$/ do |arg1, arg2|
+  pending # express the regexp above with the code you wish you had
+end
+
+Given /^I have "(.*?)" privilege$/ do |arg1|
+  pending # express the regexp above with the code you wish you had
+end
+
+Then /^I should see (\d+) groups$/ do |arg1|
+  pending # express the regexp above with the code you wish you had
+end
+
