@@ -5,6 +5,9 @@ class Ability
     user ||= User.new # guest user (not logged in)
     if user.has_role? :admin
         can :manage, :all
+    elsif user.has_role? :moderator
+        can :manage, :all
+        cannot :manage, User
     else
         can :read, Tag
         can :manage, Question
