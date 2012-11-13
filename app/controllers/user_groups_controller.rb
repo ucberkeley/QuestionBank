@@ -1,4 +1,5 @@
 class UserGroupsController < ApplicationController
+  load_and_authorize_resource
   # GET /user_groups
   # GET /user_groups.json
   def index

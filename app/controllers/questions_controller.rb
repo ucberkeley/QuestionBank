@@ -1,5 +1,5 @@
 class QuestionsController < ApplicationController
-  before_filter :authenticate_user!, :only => [:prepare_quiz, :generate_quiz, :show_quiz]
+  load_and_authorize_resource
   respond_to :json, :html
 
   # GET /questions

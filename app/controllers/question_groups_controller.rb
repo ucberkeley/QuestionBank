@@ -1,4 +1,5 @@
 class QuestionGroupsController < ApplicationController
+  load_and_authorize_resource
   # GET /question_groups
   # GET /question_groups.json
   def index

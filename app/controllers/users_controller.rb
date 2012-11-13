@@ -1,12 +1,11 @@
 class UsersController < ApplicationController
-  before_filter :authenticate_user!
-  before_filter :correct_user?, :except => [:index]
+  load_and_authorize_resource
 
   def index
     @users = User.all
   end
 
-    def edit
+  def edit
     @user = User.find(params[:id])
   end
   
