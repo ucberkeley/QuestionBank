@@ -2,6 +2,7 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
+    alias_action :prepare_quiz, :generate_quiz, :show_quiz, :to => :quiz
     user ||= User.new # guest user (not logged in)
     if user.has_role? :admin
         can :manage, :all
@@ -11,6 +12,7 @@ class Ability
     else
         can :read, Tag
         can :manage, Question
+        cannot :quiz, Question
     end
     # Define abilities for the passed in user here. For example:
     #
