@@ -45,8 +45,8 @@ ActiveRecord::Schema.define(:version => 20121109070854) do
   end
 
   create_table "questions_tags", :id => false, :force => true do |t|
-    t.integer "question_id"
-    t.integer "tag_id"
+    t.integer "question_id", :null => false
+    t.integer "tag_id",      :null => false
   end
 
   create_table "roles", :force => true do |t|

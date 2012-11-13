@@ -9,7 +9,7 @@
 require 'populator'
 require 'faker'
 
-[Attempt, Question, Tag, User, Role].each(&:delete_all)
+# [Attempt, Question, Tag, User, Role].each(&:delete_all)
 
 # Create users
 50.times do |i|
