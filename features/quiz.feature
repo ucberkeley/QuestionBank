@@ -16,7 +16,7 @@ Scenario: Anonymous user should not be able to generate a quiz
 Given I am not logged in
 And I am on the homepage
 And I try to generate a quiz
-Then I should see "Please log in first"
+Then I should see "You need to sign in for access to this page."
 
 Scenario: A logged-in can choose a topic for a quiz
 Given I am logged in

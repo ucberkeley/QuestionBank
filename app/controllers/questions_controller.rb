@@ -1,10 +1,6 @@
 class QuestionsController < ApplicationController
-  before_filter :authenticate, :only => [:prepare_quiz, :generate_quiz, :show_quiz]
+  before_filter :authenticate_user!, :only => [:prepare_quiz, :generate_quiz, :show_quiz]
   respond_to :json, :html
-
-  def authenticate
-    redirect_to root_path, :alert => "Please log in first" unless user_signed_in?
-  end
 
   # GET /questions
   # GET /questions.json
