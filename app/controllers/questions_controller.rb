@@ -5,7 +5,7 @@ class QuestionsController < ApplicationController
   # GET /questions
   # GET /questions.json
   def index
-    @questions = Question.all
+    @questions = Question.accessible_by(current_ability)
 
     respond_with @questions
   end
