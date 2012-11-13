@@ -1,5 +1,6 @@
 class QuestionsController < ApplicationController
   before_filter :authenticate, :only => [:prepare_quiz, :generate_quiz, :show_quiz]
+  respond_to :json, :html
 
   def authenticate
     redirect_to root_path, :alert => "Please log in first" unless user_signed_in?
@@ -10,10 +11,7 @@ class QuestionsController < ApplicationController
   def index
     @questions = Question.all
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @questions }
-    end
+    respond_with @questions
   end
 
   # GET /questions/1
@@ -21,10 +19,7 @@ class QuestionsController < ApplicationController
   def show
     @question = Question.find(params[:id])
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @question }
-    end
+    respond_with @question
   end
 
   # GET /questions/new

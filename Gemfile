@@ -17,6 +17,7 @@ group :development, :test do
 	gem "quiet_assets"
 	gem 'sqlite3'
 	gem 'simplecov', :require => false
+	gem "json_spec"
 end
 
 group :production do
