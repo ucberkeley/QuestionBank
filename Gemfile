@@ -30,6 +30,7 @@ group :assets do
 end
 
 gem "populator"
+gem "faker"
 gem "therubyracer"
 gem "omniauth"
 gem "omniauth-twitter"
