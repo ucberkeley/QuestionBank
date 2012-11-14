@@ -2,8 +2,6 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.1'
 
 group :development, :test do
-	gem "populator"
-	gem "faker"
 	gem "haml-rails"
 	gem "hpricot"
 	gem "ruby_parser"
@@ -31,6 +29,7 @@ group :assets do
   	gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 end
 
+gem "populator"
 gem "therubyracer"
 gem "omniauth"
 gem "omniauth-twitter"
