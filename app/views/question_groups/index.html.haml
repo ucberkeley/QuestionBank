@@ -2,12 +2,14 @@
 
 %table
   %tr
+    %th Group name
     %th
     %th
     %th
 
   - @question_groups.each do |question_group|
     %tr
+      %td= question_group.name
       %td= link_to 'Show', question_group
       %td= link_to 'Edit', edit_question_group_path(question_group)
       %td= link_to 'Destroy', question_group, method: :delete, data: { confirm: 'Are you sure?' }
