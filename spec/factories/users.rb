@@ -2,9 +2,12 @@
 
 FactoryGirl.define do
   factory :user do
-    name "MyString"
-    email "MyString"
+    name 'Test User'
+    email 'example@example.com'
     provider "MyString"
-    uid "MyString"
+
+    factory :admin do
+        after(:create) {|user| user.add_role(:admin)}
+    end
   end
 end
