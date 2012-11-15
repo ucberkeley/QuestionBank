@@ -36,6 +36,7 @@ class UserGroupsController < ApplicationController
   # GET /user_groups/1/edit
   def edit
     @user_group = UserGroup.find(params[:id])
+    @users = User.all
   end
 
   # POST /user_groups

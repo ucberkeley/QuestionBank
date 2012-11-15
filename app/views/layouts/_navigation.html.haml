@@ -10,5 +10,7 @@
 		%li= link_to 'Logout', signout_path
 		-if current_user.has_role? :admin
 			%li= link_to 'Admin', users_path
+		-if can? :read, UserGroup
+			%li= link_to 'User Group', user_groups_path
 	- else
 		%li= link_to 'Login', signin_path

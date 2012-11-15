@@ -16,4 +16,15 @@ class User < ActiveRecord::Base
     end
   end
 
+  def self.by_role(role, resource = nil)
+    users = joins(:roles).where({:roles => { :name => role }})
+    if resource
+      if resource.is_a? Class
+        users = users.where({ :roles => { :resource_type => resource.name, :resource_id => nil }})
+      else
+        users = users.where({ :roles => { :resource_type => resource.class.name, :resource_id => resource.id }})
+      end
+    end
+  end
+
 end
