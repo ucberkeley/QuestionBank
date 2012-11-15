@@ -3,7 +3,7 @@ class AttemptsController < ApplicationController
   # GET /attempts
   # GET /attempts.json
   def index
-    @attempts = Attempt.all
+    @attempts = Attempt.accessible_by(current_ability)
 
     respond_to do |format|
       format.html # index.html.erb

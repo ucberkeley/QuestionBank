@@ -20,6 +20,11 @@ require 'spec_helper'
 
 describe TagsController do
 
+  before do 
+    @user = FactoryGirl.create(:admin)
+    controller.stub!(:current_user).and_return(@user)
+  end
+  
   # This should return the minimal set of attributes required to create a valid
   # Tag. As you add validations to Tag, be sure to
   # update the return value of this method accordingly.

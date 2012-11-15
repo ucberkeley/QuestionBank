@@ -20,6 +20,11 @@ require 'spec_helper'
 
 describe UserGroupsController do
 
+  before do 
+    @user = FactoryGirl.create(:admin)
+    controller.stub!(:current_user).and_return(@user)
+  end
+  
   # This should return the minimal set of attributes required to create a valid
   # UserGroup. As you add validations to UserGroup, be sure to
   # update the return value of this method accordingly.

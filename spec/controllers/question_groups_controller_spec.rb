@@ -19,6 +19,11 @@ require 'spec_helper'
 # that an instance is receiving a specific message.
 
 describe QuestionGroupsController do
+  
+  before do 
+    @user = FactoryGirl.create(:admin)
+    controller.stub!(:current_user).and_return(@user)
+  end
 
   # This should return the minimal set of attributes required to create a valid
   # QuestionGroup. As you add validations to QuestionGroup, be sure to
