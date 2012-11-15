@@ -3,7 +3,7 @@ class UserGroupsController < ApplicationController
   # GET /user_groups
   # GET /user_groups.json
   def index
-    @user_groups = UserGroup.all
+    @user_groups = UserGroup.accessible_by(current_ability)
 
     respond_to do |format|
       format.html # index.html.erb

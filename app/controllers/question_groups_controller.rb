@@ -3,7 +3,7 @@ class QuestionGroupsController < ApplicationController
   # GET /question_groups
   # GET /question_groups.json
   def index
-    @question_groups = QuestionGroup.all
+    @question_groups = QuestionGroup.accessible_by(current_ability)
 
     respond_to do |format|
       format.html # index.html.erb
