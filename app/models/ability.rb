@@ -10,9 +10,8 @@ class Ability
         can :manage, :all
         cannot :manage, User
     else
-        can :manage, UserGroup, :id => UserGroup.with_role(:owner, user).map{ |group| group.id }
         can :read, UserGroup, :id => UserGroup.with_role(:viewer, user).map{ |group| group.id }
-        
+        can :manage, UserGroup, :id => UserGroup.with_role(:owner, user).map{ |group| group.id }
         can :read, Tag
         can :manage, Question
         cannot :quiz, Question

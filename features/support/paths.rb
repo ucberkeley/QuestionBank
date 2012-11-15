@@ -14,6 +14,7 @@ module NavigationHelpers
     when /^new attempt page$/ then '/attempt/new'
     when /^the quiz generation page$/ then '/questions/quiz/new'
     when /^the download data page$/ then '/queries/prepare_to_get_attempts'
+    when /^the user group edit page of "(.*?)"$/ then edit_user_group_path(UserGroup.find_by_name($1))
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

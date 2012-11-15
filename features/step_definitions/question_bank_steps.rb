@@ -42,6 +42,40 @@ Given /^PENDING/ do
     pending
 end
 
+Given /^the "(.*?)" "(.*?)" exists$/ do |resource_type, resource_name|
+    resource_type.to_s.classify.constantize.find_or_create_by_name(resource_name.to_s)
+end
+
+Given /^the user group "(.*?)" exists$/ do |group|
+  UserGroup.create(:name => group)
+end
+
+Given /^the users? "(.*?)" exists with uid "(.*?)"$/ do |user, uid|
+  User.create(:name => user, :uid => uid, :provider => "twitter")
+end
+
+Given /^the following users exist:$/ do |fields|
+  fields.rows_hash.each do |user, uid|
+    User.create(:name => user, :uid => uid, :provider => "twitter")
+  end
+end
+
+Given /^"(.*?)" is in the user group "(.*?)"$/ do |user, group|
+  UserGroup.find_by_name(group).users << User.find_by_name(user)
+end
+
+Given /^"(.*?)" is the owner of "(.*?)"$/ do |user, group|
+  User.find_by_name(user).add_role :owner, UserGroup.find_by_name(group)
+end
+
+Given /^"(.*?)" is a viewer of "(.*?)"$/ do |user, group|
+  User.find_by_name(user).add_role :viewer, UserGroup.find_by_name(group)
+end
+
+When /^I visit the user group edit page of "(.*?)"$/ do |group|
+  visit edit_user_group_path(UserGroup.find_by_name(group))
+end
+
 # filler step until feature is implemented
 Then /^the quiz should have (\d+) questions$/ do |num_questions|
     body = page.body
@@ -61,21 +95,13 @@ Then /^I should see an under\-privileged error message$/ do
     # page.should have_content "Only instructors are allowed to generate quizzes"
 end
 
-Given /^the "(.*?)" "(.*?)" exists$/ do |resource_type, resource_name|
-    resource_type.to_s.classify.constantize.find_or_create_by_name(resource_name.to_s)
-end
-
 Given /^I own the "(.*?)" "(.*?)"$/ do |resource_type, resource_name|
-    pending
+  pending
 end
 
 Then /^I should get a download with the filename "([^\"]*)"$/ do |filename|
-    pending
-    # page.response_headers['Content-Disposition'].should include("filename=\"#{filename}\"")
-end
-
-Given /^"(.*?)" is in the group "(.*?)"$/ do |arg1, arg2|
-  pending # express the regexp above with the code you wish you had
+  pending
+  # page.response_headers['Content-Disposition'].should include("filename=\"#{filename}\"")
 end
 
 Given /^I have no privileges in group "(.*?)"$/ do |arg1|
