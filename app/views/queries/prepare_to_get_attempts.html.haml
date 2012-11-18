@@ -1,10 +1,10 @@
-%p Download a CSV file with data regarding attempts to answer questions.
-%p Filter the data by a student group, a question group, or both.
+%p Download a CSV file with data about users' attempts to answer questions.
+%p Filter by a user group, a question group, or both.
 
 = form_tag('/queries/get_attempts') do
 	%table
 		%tr
-			%td= label_tag('user_group', 'Student Group')
+			%td= label_tag('user_group', 'User Group')
 			%td
 			%td= label_tag('question_group', 'Question Group')
 		%tr
