@@ -1,50 +1,60 @@
 Feature: An authorized user can download data about attempts
 
 	Background:
-		Given the "user_group" "CS169Fall2012" exists
-		Given I own the "user_group" "CS169Fall2012"
-		Given the "question_group" "Quiz 1" exists
-		Given I own the "question_group" "Quiz 1"
-		Given I am on the download data page
+		Given the user group "Group 1" exists
+		And the user group "Group 2" exists
+		And the user group "Group 3" exists
 
-	Scenario: A user cannot request data without parameters 
+		Given the following users exist:
+		    | Student A    | 1 |
+		    | Student B    | 2 |
+		    | Instructor X | 3 |
+		    | Instructor Y | 4 |
+
+		Given "Student A" is in the user group "Group 1"
+		And "Student A" is in the user group "Group 2"
+		And "Student B" is in the user group "Group 1"
+
+		Given "Instructor X" is the owner of "Group 1"
+
+		Given Omniauth is in test mode
+
+	Scenario: A user with "viewer" privileges can request data for a user group
+		Given I am logged in as "Instructor X"
+		And I am on the download data page
+		Then I should see "Group 1"
+
+	Scenario: A user without "viewer" privileges cannot request data for a user group
+		Given I am logged in as "Student A"
+		And I am on the download data page
+		Then I should not see 'Group 1'
+
+	Scenario: A user with "viewer" privileges can request data for a question group
+		Given I am logged in as "Instructor X"
+		And I am on the download data page
+
+	Scenario: A user without "viewer" privileges cannot request data for a question group
+		Given I am logged in as "Student A"
+		And I am on the download data page
+
+	Scenario: A user with "viewer" privileges can download data for a user group
+		Given I am logged in as "Instructor X"
+		And I am on the download data page
+		When I select "Group 1" from "user_group[id]"
+		And I press "download_data_submit"
+		Then I should get a download with the filename "Group_1_attempts.csv"
+
+	Scenario: A user with "viewer" privileges can download data for a question group
+		Given I am logged in as "Instructor X"
+		And I am on the download data page
+
+	Scenario: A user with "viewer" privileges can download data for a user group and a question group
+		Given I am logged in as "Instructor X"
+		And I am on the download data page
+
+	Scenario: A user cannot download data without parameters
+		Given I am logged in as "Instructor X"
+		And I am on the download data page
 		When I press "download_data_submit"
 		Then I should be on the download data page
-		And I should see "flash_error"
-
-	Scenario: An authorized user can request data for a student group
-		Given PENDING
-		Then I should see "CS169Fall2012" 
-
-	Scenario: An authorized user can download data for a student group
-		Given PENDING
-		When I select "CS169Fall2012" from "user_group"
-		And I press "download_data_submit"
-		Then I should get a download with the filename "CS169Fall2012_attempts.csv"
-
-	Scenario: An authorized user can request data for a question group
-		Given PENDING
-		Then I should see "Quiz 1"
-
-	Scenario: An authorized user can download data for a question group
-		Given PENDING
-		When I select "Quiz 1" from "question_group"
-		And I press "download_data_submit"
-		Then I should get a download with the filename "Quiz_1_attempts.csv"
-
-	Scenario: An authorized user can download data for both a student group and a question group
-		Given PENDING
-		When I select "CS169Fall2012" from "user_group"
-		And I select "and" from "operator"
-		And I select "Quiz 1" from "question_group"
-		And I press "download_data_submit"
-		Then I should get a download with the filename "CS169Fall2012_and_Quiz_1_attempts.csv"
-
-	Scenario: An authorized user can download data for either a student group or a question group
-		Given PENDING
-		When I select "CS169Fall2012" from "user_group"
-		And I select "or" from "operator"
-		And I select "Quiz 1" from "question_group"
-		And I press "download_data_submit"
-		Then I should get a download with the filename "CS169Fall2012_or_Quiz_1_attempts.csv"
-		
+		And I should see "flash_error"	

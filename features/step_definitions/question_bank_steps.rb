@@ -97,6 +97,7 @@ end
 
 Given /^I own the "(.*?)" "(.*?)"$/ do |resource_type, resource_name|
   pending
+  # current_user.add_role :viewer, resource_type.to_s.classify.constantize.find_by_name(resource_name.to_s)
 end
 
 Then /^I should get a download with the filename "([^\"]*)"$/ do |filename|
