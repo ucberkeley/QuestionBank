@@ -1,25 +1,26 @@
 class QueriesController < ApplicationController
 
   def execute
-    if !params[:user_group][:id].blank? 
+     if !params[:user_group][:id].blank? && !params[:question_group][:id].blank?
+      user_group = UserGroup.find(params[:user_group][:id])
+      question_group = QuestionGroup.find(params[:question_group][:id])
+      authorize! :read, user_group
+      authorize! :read, question_group
+      @attempts = Attempt.retrieve_by_user_group_and_question_group(user_group.id, question_group.id)
+    end
+    if !params[:user_group][:id].blank? && params[:question_group][:id].blank?
       user_group = UserGroup.find(params[:user_group][:id])
       authorize! :read, user_group
-      if !params[:question_group][:id].blank?
-        question_group = QuestionGroup.find(params[:question_group][:id])
-        authorize! :read, question_group
-        @attempts = Attempt.includes(:user => [:user_group], :question => [:question_group]).where("user_groups.id = ? and question_groups.id = ?", user_group.id, question_group.id)
-      else
-        @attempts = Attempt.includes(:user => [:user_group]).where("user_groups.id = ?", user_group.id)
-      end
-    else
-      if !params[:question_group][:id].blank?
-        question_group = QuestionGroup.find(params[:question_group][:id])
-        authorize! :read, question_group
-        @attempts = Attempt.includes(:question => [:question_group]).where("question_groups.id = ?", question_group.id)
-      else
-        flash[:error] = 'You must choose either a user group or a question group.'
-        redirect_to :action => 'prepare' 
-      end
+      @attempts = Attempt.retrieve_by_user_group(user_group.id)
+    end
+    if params[:user_group][:id].blank? && !params[:question_group][:id].blank?
+      question_group = QuestionGroup.find(params[:question_group][:id])
+      authorize! :read, question_group
+      @attempts = Attempt.retrieve_by_question_group(question_group.id)
+    end
+    if params[:user_group][:id].blank? && !params[:question_group][:id].blank?
+      flash[:error] = 'You must choose either a user group or a question group.'
+      redirect_to :action => 'prepare' 
     end
   end
 

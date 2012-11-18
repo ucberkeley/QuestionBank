@@ -1,4 +1,16 @@
 class Attempt < ActiveRecord::Base
   belongs_to :question
   belongs_to :user
+
+  def retrieve_by_user_group(user_group_id) 
+  	Attempt.includes(:user => [:user_group]).where("user_groups.id = ?", user_group_id)
+  end
+
+  def retrieve_by_question_group(question_group_id) 
+  	Attempt.includes(:question => [:question_group]).where("question_groups.id = ?", question_group_id)
+  end
+
+  def retrieve_by_user_group_and_question_group(user_group_id, question_group_id)
+  	Attempt.includes(:user => [:user_group], :question => [:question_group]).where("user_groups.id = ? and question_groups.id = ?", user_group_id, question_group_id)
+  end
 end
