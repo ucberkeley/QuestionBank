@@ -42,7 +42,7 @@ Feature: An authorized user can download data about attempts
 		And I am on the download data page
 		When I select "Group 1" from "user_group[id]"
 		And I press "download_data_submit"
-		Then I should get a download with the filename "Group_1_attempts.csv"
+		Then I should get a download with the filename "attempts.csv"
 
 	Scenario: A user with "viewer" privileges can download data for a question group
 		Given I am logged in as "Instructor X"
