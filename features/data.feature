@@ -7,6 +7,11 @@ Feature: An authorized user can download data about attempts
 		Given I own the "question_group" "Quiz 1"
 		Given I am on the download data page
 
+	Scenario: A user cannot request data without parameters 
+		When I press "download_data_submit"
+		Then I should be on the download data page
+		And I should see "flash_error"
+
 	Scenario: An authorized user can request data for a student group
 		Given PENDING
 		Then I should see "CS169Fall2012" 

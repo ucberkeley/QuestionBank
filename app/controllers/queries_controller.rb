@@ -19,9 +19,7 @@ class QueriesController < ApplicationController
   end
 
   def prepare_to_get_attempts
-    # this is just for now
-    @user_groups = UserGroup.with_role(:viewer, current_user)
-    # this can stay
-    @question_groups = QuestionGroup.where(:user_id => current_user)
+    @user_groups = UserGroup.accessible_by(current_ability)
+    @question_groups = QuestionGroup.accessible_by(current_ability)
   end
 end
