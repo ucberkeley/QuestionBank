@@ -1,25 +1,31 @@
 class QueriesController < ApplicationController
-  def get_attempts
-    if !params[:user_group].blank?
-      user_group = params[:user_group]
-      if !params[:question_group].blank?
-        question_group = params[:question_group]
-        @attempts = Attempt.where(:user_group => user_group, :question_group => question_group).includes(:all)
+
+  def execute
+    if !params[:user_group][:id].blank? 
+      user_group = UserGroup.find(params[:user_group][:id])
+      authorize! :read, user_group
+      if !params[:question_group][:id].blank?
+        question_group = QuestionGroup.find(params[:question_group][:id])
+        authorize! :read, question_group
+        @attempts = Attempt.includes(:user => [:user_group], :question => [:question_group]).where("user_groups.id = ? and question_groups.id = ?", user_group.id, question_group.id)
       else
-        @attempts = Attempt.where(:user_group => user_group).includes(:all)
+        @attempts = Attempt.includes(:user => [:user_group]).where("user_groups.id = ?", user_group.id)
       end
     else
-      if !params[:question_group].blank?
-        @attempts = Attempt.where(:question_group => question_group).includes(:all)
+      if !params[:question_group][:id].blank?
+        question_group = QuestionGroup.find(params[:question_group][:id])
+        authorize! :read, question_group
+        @attempts = Attempt.includes(:question => [:question_group]).where("question_groups.id = ?", question_group.id)
       else
         flash[:error] = 'You must choose either a user group or a question group.'
-        redirect_to :action => 'prepare_to_get_attempts' 
+        redirect_to :action => 'prepare' 
       end
     end
   end
 
-  def prepare_to_get_attempts
+  def prepare
     @user_groups = UserGroup.accessible_by(current_ability)
     @question_groups = QuestionGroup.accessible_by(current_ability)
   end
+
 end

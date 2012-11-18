@@ -1,8 +1,8 @@
 class Question < ActiveRecord::Base
-	has_and_belongs_to_many :tags
-  has_and_belongs_to_many :question_groups
+	has_and_belongs_to_many :tag
+  has_and_belongs_to_many :question_group
 	belongs_to :user
-	has_many :attempts
+	has_many :attempt
 
 	 def self.get_quiz(number_of_questions, tag_name)
     # Wonder if there is a cleaner way to do this

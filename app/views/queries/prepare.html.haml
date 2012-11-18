@@ -1,0 +1,16 @@
+%p Download a CSV file with data about users' attempts to answer questions.
+%p Filter by a user group, a question group, or both.
+
+= form_tag('/queries/execute') do
+	%table
+		%tr
+			%td= label_tag('user_group[id]', 'User Group')
+			%td
+			%td= label_tag('question_group[id]', 'Question Group')
+		%tr
+			%td= select_tag('user_group[id]',options_from_collection_for_select(@user_groups, 'id', 'name'), :include_blank => true)
+			%td= select_tag('operator', "<option value='and'>and</option><option value='or'>or</option>".html_safe, :include_blank => true)
+			%td= select_tag('question_group[id]', options_from_collection_for_select(@question_groups, 'id', 'name'), :include_blank => true)
+		%tr
+			%td
+				%button.btn{:type => 'submit', :id => 'download_data_submit'} Download

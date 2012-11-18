@@ -1,9 +1,9 @@
 class User < ActiveRecord::Base
   rolify
   attr_accessible :role_ids, :provider, :uid, :name, :email
-  has_many :questions
-  has_many :attempts
-  has_and_belongs_to_many :user_groups
+  has_many :question
+  has_many :attempt
+  has_and_belongs_to_many :user_group
 
   def self.create_with_omniauth(auth)
     create! do |user|
