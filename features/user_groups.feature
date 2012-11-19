@@ -1,5 +1,9 @@
 Feature: Access to data about student groups is determined by privilege levels
 
+	As a site manager
+	So that I can enforce segregation between groups of users
+	I want to assign different tiers of permissions to my users
+
 	Background:
 		Given the user group "Group 1" exists
 		And the user group "Group 2" exists
