@@ -27,7 +27,7 @@ Feature: An authorized user can download data about attempts
 	Scenario: A user without "viewer" privileges cannot request data for a user group
 		Given I am logged in as "Student A"
 		And I am on the download data page
-		Then I should not see 'Group 1'
+		Then I should not see "Group 1"
 
 	Scenario: A user with "viewer" privileges can request data for a question group
 		Given I am logged in as "Instructor X"
@@ -42,7 +42,7 @@ Feature: An authorized user can download data about attempts
 		And I am on the download data page
 		When I select "Group 1" from "user_group[id]"
 		And I press "download_data_submit"
-		Then I should get a download with the filename "attempts.csv"
+		Then I should receive a file "attempts.csv"
 
 	Scenario: A user with "viewer" privileges can download data for a question group
 		Given I am logged in as "Instructor X"
@@ -57,4 +57,4 @@ Feature: An authorized user can download data about attempts
 		And I am on the download data page
 		When I press "download_data_submit"
 		Then I should be on the download data page
-		And I should see "flash_error"	
+		And I should see "You must choose either a user group or a question group."	
