@@ -50,6 +50,10 @@ Given /^the user group "(.*?)" exists$/ do |group|
   UserGroup.create(:name => group)
 end
 
+Given /^the question group "(.*?)" exists$/ do |group|
+  QuestionGroup.create(:name => group)
+end
+
 Given /^the users? "(.*?)" exists with uid "(.*?)"$/ do |user, uid|
   User.create(:name => user, :uid => uid, :provider => "twitter")
 end
@@ -60,16 +64,34 @@ Given /^the following users exist:$/ do |fields|
   end
 end
 
+Given /^the following questions exist:$/ do |fields|
+  fields.rows_hash.each do |question, number|
+    Question.create(:xml => question)
+  end
+end
+
 Given /^"(.*?)" is in the user group "(.*?)"$/ do |user, group|
   UserGroup.find_by_name(group).users << User.find_by_name(user)
+end
+
+Given /^"(.*?)" is in the question group "(.*?)"$/ do |question, group|
+  QuestionGroup.find_by_name(group).questions << Question.find_by_xml(question)
 end
 
 Given /^"(.*?)" is the owner of "(.*?)"$/ do |user, group|
   User.find_by_name(user).add_role :owner, UserGroup.find_by_name(group)
 end
 
+Given /^"(.*?)" is the owner of question group "(.*?)"$/ do |user, group|
+  User.find_by_name(user).add_role :owner, QuestionGroup.find_by_name(group)
+end
+
 Given /^"(.*?)" is a viewer of "(.*?)"$/ do |user, group|
   User.find_by_name(user).add_role :viewer, UserGroup.find_by_name(group)
+end
+
+Given /^"(.*?)" is a viewer of question group "(.*?)"$/ do |user, group|
+  User.find_by_name(user).add_role :viewer, QuestionGroup.find_by_name(group)
 end
 
 When /^I visit the user group edit page of "(.*?)"$/ do |group|
@@ -95,14 +117,8 @@ Then /^I should see an under\-privileged error message$/ do
     # page.should have_content "Only instructors are allowed to generate quizzes"
 end
 
-Given /^I own the "(.*?)" "(.*?)"$/ do |resource_type, resource_name|
-  pending
-  # current_user.add_role :viewer, resource_type.to_s.classify.constantize.find_by_name(resource_name.to_s)
-end
-
 Then /^I should get a download with the filename "([^\"]*)"$/ do |filename|
-  pending
-  # page.response_headers['Content-Disposition'].should include("filename=\"#{filename}\"")
+  page.response_headers['Content-Disposition'].should include("filename=#{filename}")
 end
 
 Given /^I have no privileges in group "(.*?)"$/ do |arg1|
@@ -133,3 +149,10 @@ Then /^I should see (\d+) groups$/ do |arg1|
   pending # express the regexp above with the code you wish you had
 end
 
+And /^I should see an error message$/ do 
+  if page.respond_to? :should
+    page.should have_selector('#flash_error')
+  else
+    assert page.has_selector?('#flash_error')
+  end
+end

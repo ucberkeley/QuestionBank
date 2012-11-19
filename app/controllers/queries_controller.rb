@@ -40,14 +40,14 @@ class QueriesController < ApplicationController
     end         
     
     if user_group_name && question_group_name
-      user_group_name = user_group_name.strip.gsub(" +", "_")
-      question_group_name = question_group_name.strip.gsub(" +", "_")
+      user_group_name = user_group_name.strip.gsub(/[\s]+/, "_")
+      question_group_name = question_group_name.strip.gsub(/[\s]+/, "_")
       filename = user_group_name + "_" + question_group_name + "_attempts.csv" 
     elsif user_group_name && !question_group_name
-      user_group_name = user_group_name.strip.gsub(" +", "_")
+      user_group_name = user_group_name.strip.gsub(/[\s]+/, "_")
       filename = user_group_name + "_attempts.csv" 
     elsif !user_group_name && question_group_name
-      question_group_name = question_group_name.strip.gsub(" +", "_")
+      question_group_name = question_group_name.strip.gsub(/[\s]+/, "_")
       filename = question_group_name + "_attempts.csv" 
     else
       filename = "attempts.csv"
