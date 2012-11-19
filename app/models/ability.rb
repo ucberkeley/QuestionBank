@@ -12,6 +12,8 @@ class Ability
     else
         can :read, UserGroup, :id => UserGroup.with_role(:viewer, user).map{ |group| group.id }
         can :manage, UserGroup, :id => UserGroup.with_role(:owner, user).map{ |group| group.id }
+        can :read, QuestionGroup, :id => QuestionGroup.with_role(:viewer, user).map{ |group| group.id }
+        can :manage, QuestionGroup, :id => QuestionGroup.with_role(:owner, user).map{ |group| group.id }
         can :read, Tag
         can :manage, Question
         cannot :quiz, Question

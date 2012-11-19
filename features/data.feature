@@ -29,10 +29,10 @@ Feature: An authorized user can download data about attempts
 		And "Question B" is in the question group "Question Group 1"
 
 		Given "Instructor X" is the owner of "User Group 1"
-		Given "Instructor X" is the owner of "Question Group 1"
-		Given "Instructor X" is a viewer of "Question Group 1"
+		Given "Instructor X" is the owner of question group "Question Group 1"
+		Given "Instructor X" is a viewer of question group "Question Group 1"
 		Given "Instructor Y" is a viewer of "User Group 1"
-		Given "Instructor Y" is the owner of "Question Group 2"
+		Given "Instructor Y" is the owner of question group "Question Group 2"
 
 		Given Omniauth is in test mode
 
