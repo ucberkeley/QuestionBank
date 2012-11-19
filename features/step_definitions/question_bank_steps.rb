@@ -70,6 +70,28 @@ Given /^the following questions exist:$/ do |fields|
   end
 end
 
+# Example:
+#
+# Given the following attempts exist:
+#   | Question   | User      | Answer | Correctness |
+#   | Question A | Student A | Apple  | True        |
+#   | Question B | Student A | Orange | False       |
+#   | Question A | Student B | Orange | False       |
+Given /^the following attempts exist:$/ do |fields|
+  fields.hashes.each do |attempt|
+    question = attempt["Question"]
+    user = attempt["User"]
+    answer = attempt["Anser"]
+    correctness = attempt["Correctness"]
+    Attempt.create(
+      :user_id => User.find_by_name(user).uid,
+      :question_id => Question.find_by_xml(question).id,
+      :answer => answer,
+      :is_correct => correctness == "True" ? true : false
+    )
+  end
+end
+
 Given /^"(.*?)" is in the user group "(.*?)"$/ do |user, group|
   UserGroup.find_by_name(group).users << User.find_by_name(user)
 end

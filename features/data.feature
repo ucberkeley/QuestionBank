@@ -28,7 +28,14 @@ Feature: An authorized user can download data about attempts
 		And "Question A" is in the question group "Question Group 2"
 		And "Question B" is in the question group "Question Group 1"
 
+		Given the following attempts exist:
+			| Question   | User      | Answer | Correctness |
+			| Question A | Student A | Apple  | True        |
+			| Question B | Student A | Orange | False       |
+			| Question A | Student B | Orange | False       |
+
 		Given "Instructor X" is the owner of "User Group 1"
+		Given "Instructor X" is a viewer of "User Group 2"
 		Given "Instructor X" is the owner of question group "Question Group 1"
 		Given "Instructor X" is a viewer of question group "Question Group 1"
 		Given "Instructor Y" is a viewer of "User Group 1"
@@ -59,9 +66,11 @@ Feature: An authorized user can download data about attempts
 	Scenario: A user with "viewer" privileges can download data for a user group
 		Given I am logged in as "Instructor X"
 		And I am on the download data page
-		When I select "User Group 1" from "user_group_id"
+		When I select "User Group 2" from "user_group_id"
 		And I press "download_data_submit"
-		Then I should get a download with the filename "User_Group_1_attempts.csv"
+		Then I should get a download with the filename "User_Group_2_attempts.csv"
+		And I should see "Student A"
+		And I should not see "Student B"
 
 	Scenario: A user with "viewer" privileges can download data for a question group
 		Given I am logged in as "Instructor X"
