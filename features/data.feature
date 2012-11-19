@@ -82,6 +82,5 @@ Feature: An authorized user can download data about attempts
 		Given I am logged in as "Instructor X"
 		And I am on the download data page
 		When I press "download_data_submit"
-		Then show me the page
 		Then I should be on the download data page
 		And I should see an error message

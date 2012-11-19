@@ -123,7 +123,7 @@ Then /^I should see an under\-privileged error message$/ do
 end
 
 Then /^I should get a download with the filename "([^\"]*)"$/ do |filename|
-  page.response_headers['Content-Disposition'].should include("filename=#{filename}")
+  page.response_headers['Content-Disposition'].should include("filename=\"#{filename}\"")
 end
 
 Given /^I have no privileges in group "(.*?)"$/ do |arg1|
