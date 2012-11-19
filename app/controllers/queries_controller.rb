@@ -8,22 +8,19 @@ class QueriesController < ApplicationController
       question_group = QuestionGroup.find(params[:question_group][:id])
       authorize! :read, user_group
       authorize! :read, question_group
-      @attempts = Attempt.retrieve_by_user_group_and_question_group(user_group.id, question_group.id)
-      self.export_to_csv(@attempts, user_group.name, question_group.name)
     elsif !params[:user_group][:id].blank? && params[:question_group][:id].blank?
       user_group = UserGroup.find(params[:user_group][:id])
       authorize! :read, user_group
       @attempts = Attempt.retrieve_by_user_group(user_group.id)
-      self.export_to_csv(@attempts, user_group.name, false)
     elsif params[:user_group][:id].blank? && !params[:question_group][:id].blank?
       question_group = QuestionGroup.find(params[:question_group][:id])
       authorize! :read, question_group
       @attempts = Attempt.retrieve_by_question_group(question_group.id)
-      self.export_to_csv(@attempts, false, question_group.name)
     else
       flash[:error] = 'You must choose either a user group or a question group.'
-      redirect_to :action => 'prepare' 
+      redirect_to :action => 'prepare' and return
     end
+      return self.export_to_csv(@attempts, user_group.name, question_group.name)
   end
 
   def prepare
@@ -54,8 +51,9 @@ class QueriesController < ApplicationController
     end
 
     send_data csv_string,
-    :type => 'text/csv; charset=iso-8859-1; header=present',
-    :disposition => "attachment; filename=#{filename}" 
+    :filename => filename,
+    :type => 'text/csv',
+    :disposition => 'attachment'
   end 
 
 

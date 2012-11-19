@@ -44,6 +44,7 @@ Feature: An authorized user can download data about attempts
 	Scenario: A user without "viewer" privileges cannot request data for a user group
 		Given I am logged in as "Student A"
 		And I am on the download data page
+		Then I should not see "User Group 1"
 
 	Scenario: A user with "viewer" privileges can request data for a question group
 		Given I am logged in as "Instructor X"
@@ -53,6 +54,7 @@ Feature: An authorized user can download data about attempts
 	Scenario: A user without "viewer" privileges cannot request data for a question group
 		Given I am logged in as "Student A"
 		And I am on the download data page
+		Then I should not see "Question Group 1"
 
 	Scenario: A user with "viewer" privileges can download data for a user group
 		Given I am logged in as "Instructor X"

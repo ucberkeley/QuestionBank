@@ -98,6 +98,11 @@ When /^I visit the user group edit page of "(.*?)"$/ do |group|
   visit edit_user_group_path(UserGroup.find_by_name(group))
 end
 
+# http://stackoverflow.com/questions/5255250/cucumber-test-file-download
+Then /^I should receive a file "(.*?)"$/ do |file|
+  page.response_headers['Content-Type'].should == "text/csv" && page.response_headers['Content-Disposition'].should =~ /#{file}/
+end
+
 # filler step until feature is implemented
 Then /^the quiz should have (\d+) questions$/ do |num_questions|
     body = page.body
