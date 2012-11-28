@@ -9,6 +9,7 @@ Feature: An authorized user can upload data about questions or students
 			| Question A | 1 |
 			| Question B | 2 |
 			| Question C | 3 |
+			| Question D | 4 |
 
 		Given the question group "Question Group 1" exists
 		And "Question A" is in the question group "Question Group 1"
