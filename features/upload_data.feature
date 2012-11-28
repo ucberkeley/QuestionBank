@@ -39,6 +39,16 @@ Feature: An authorized user can upload data about questions or students
 		And I press "upload_data_submit"
 		Then I should see an error message
 
+	Scenario: A user cannot upload new attributes for nonexistent questions 
+		Given I am logged in as "Instructor X"
+		And I am on the upload data page
+		And I select a CSV file with the following data:
+			Question Group	| Difficulty
+			3 				| 3
+			4 				| 4	
+		And I press "upload_data_submit"
+		Then I should see an error message
+
 	Scenario: A user can overwrite uploaded attributes
 		Given I am logged in as "Instructor Y"
 		And I am on the upload data page
@@ -64,13 +74,3 @@ Feature: An authorized user can upload data about questions or students
 		And I press "upload_data_submit"
 		When I go to the download data page
 		Then I should see "Difficulty"
-
-	Scenario: A user cannot upload new attributes for non-existant questions 
-		Given I am logged in as "Instructor X"
-		And I am on the upload data page
-		And I select a CSV file with the following data:
-			Question Group	| Difficulty
-			3 				| 3
-			4 				| 4	
-		And I press "upload_data_submit"
-		Then I should see an error message
