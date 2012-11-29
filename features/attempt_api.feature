@@ -1,23 +1,25 @@
 Feature: A remote web service like EdX can use the API to post attempts
 
 Background:
+    Given PENDING
     Given the following attempts exist:
-        | user_id | question_id |
-        | 1       | q1          |
-        | 2       | q2          |
-        | 3       | q3          |
+        | Question   | User      | Answer | Correctness |
+        | Question A | Student A | Apple  | True        |
+        | Question B | Student A | Orange | False       |
+        | Question A | Student B | Orange | False       |
     Given the following questions exist:
-        | user_id | question_id |
-        | 1       | q1          |
-        | 2       | q2          |
-        | 3       | q3          |
+        | Question A | 1 |
+        | Question B | 2 |
+        | Question C | 3 |
+        | Question D | 4 |
     Given the following users exist:
-        | user_id | name        |
-        | 1       | AaronCulich |
-        | 2       | q2          |
-        | 3       | q3          |
+        | Student A    | 1 |
+        | Student B    | 2 |
+        | Instructor X | 3 |
+        | Instructor Y | 4 |
 
 Scenario: Adding an attempt from an exisiting user should be recorded
+    Given PENDING
     When I send a POST request to "/api/event/new" with:
       """
       {
@@ -45,6 +47,7 @@ Scenario: Adding an attempt from an exisiting user should be recorded
     Then I should see "AaronCulich"
 
 Scenario: Adding an attempt from an non-existing user should not be recorded
+    Given PENDING
     When I send a POST request to "/api/event/new" with:
       """
       {
