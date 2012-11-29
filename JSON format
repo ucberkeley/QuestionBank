@@ -1,0 +1,63 @@
+
+
+
+
+
+# This is the JSON Aaron is planning to sent to QB for the time being.
+# We need to comment this out or delete
+{
+"username": "AaronCulich", 
+"event_source": "server", 
+"event_type": "save_problem_check", 
+"time": "2012-11-26T00:17:44.150971", 
+"ip": "128.32.34.64", 
+"event": {
+		"success": "incorrect", 
+		"correct_map": {
+				"i4x-MITx-6_002x-problem-H10P1_Magnitude_and_Angle_4_1": 
+					{"hint": "", "hintmode": null, "correctness": "incorrect", 
+					"msg": "", "npoints": null, "queuestate": null}, 
+				"i4x-MITx-6_002x-problem-H10P1_Magnitude_and_Angle_5_1": 
+					{"hint": "", "hintmode": null, "correctness": "incorrect", 
+					"msg": "", "npoints": null, "queuestate": null}, 
+				"i4x-MITx-6_002x-problem-H10P1_Magnitude_and_Angle_2_1": 
+					{"hint": "", "hintmode": null, "correctness": "incorrect", 
+					"msg": "", "npoints": null, "queuestate": null}, 
+				"i4x-MITx-6_002x-problem-H10P1_Magnitude_and_Angle_3_1": 
+					{"hint": "", "hintmode": null, "correctness": "incorrect", 
+					"msg": "", "npoints": null, "queuestate": null}
+				}, 
+		"attempts": 2, 
+		"answers": {
+			"i4x-MITx-6_002x-problem-H10P1_Magnitude_and_Angle_4_1": "8888888888888888", 
+			"i4x-MITx-6_002x-problem-H10P1_Magnitude_and_Angle_5_1": "899999999999999999999", 
+			"i4x-MITx-6_002x-problem-H10P1_Magnitude_and_Angle_2_1": "", 
+			"i4x-MITx-6_002x-problem-H10P1_Magnitude_and_Angle_3_1": ""}, 
+		"state": {
+			"student_answers": {
+				"i4x-MITx-6_002x-problem-H10P1_Magnitude_and_Angle_4_1": "8888888888888888", 
+				"i4x-MITx-6_002x-problem-H10P1_Magnitude_and_Angle_5_1": "899999999999999999999", 
+				"i4x-MITx-6_002x-problem-H10P1_Magnitude_and_Angle_2_1": "", 
+				"i4x-MITx-6_002x-problem-H10P1_Magnitude_and_Angle_3_1": ""}, 
+			"seed": 613239181, 
+			"done": true, 
+			"correct_map": {
+				"i4x-MITx-6_002x-problem-H10P1_Magnitude_and_Angle_4_1": 
+					{"hint": "", "hintmode": null, "correctness": "incorrect", 
+					"msg": "", "npoints": null, "queuestate": null}, 
+				"i4x-MITx-6_002x-problem-H10P1_Magnitude_and_Angle_5_1": 
+					{"hint": "", "hintmode": null, "correctness": "incorrect", 
+					"msg": "", "npoints": null, "queuestate": null}, 
+				"i4x-MITx-6_002x-problem-H10P1_Magnitude_and_Angle_2_1": 
+					{"hint": "", "hintmode": null, "correctness": "incorrect", 
+					"msg": "", "npoints": null, "queuestate": null}, 
+				"i4x-MITx-6_002x-problem-H10P1_Magnitude_and_Angle_3_1": 
+					{"hint": "", "hintmode": null, "correctness": "incorrect", 
+					"msg": "", "npoints": null, "queuestate": null}
+					}
+			}, 
+
+		"problem_id": "i4x://MITx/6.002x/problem/H10P1_Magnitude_and_Angle"
+	}, 
+"agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.64 Safari/537.11", 
+"page": "x_module"}
