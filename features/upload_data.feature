@@ -4,6 +4,7 @@ Feature: An authorized user can upload data about questions or students
     I want to be able to upload a CSV file with new data
 
     Background:
+        Given PENDING
         Given the following users exist:
             | Instructor X | 1 |
             | Instructor Y | 2 |
