@@ -183,3 +183,12 @@ And /^I should see an error message$/ do
     assert page.has_selector?('#flash_error')
   end
 end
+
+When /^I upload a CSV file with the following data:$/ do |table|
+  # table is a Cucumber::Ast::Table
+  # pending # express the regexp above with the code you wish you had
+end
+
+Then /^the attribute with the name "(.*?)" and the value "(.*?)" for question "(.*?)" and user "(.*?)" should be stored in the database$/ do |arg1, arg2, arg3, arg4|
+  # pending # express the regexp above with the code you wish you had
+end
