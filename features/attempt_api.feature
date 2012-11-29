@@ -1,5 +1,10 @@
 Feature: A remote web service like EdX can use the API to post attempts
 
+As a third party website
+So that I can aggregate my data on the Question Bank
+I want to post data to a JSON API
+
+
 Background:
     Given PENDING
     Given the following attempts exist:

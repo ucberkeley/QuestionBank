@@ -1,6 +1,6 @@
 Feature: An authorized user can upload data about questions or students
-    In order to add data to the database
-    As a user
+    As a researcher
+    so that I can store custom analytics
     I want to be able to upload a CSV file with new data
 
     Background:
