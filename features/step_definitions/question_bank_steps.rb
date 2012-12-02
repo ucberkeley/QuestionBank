@@ -126,6 +126,10 @@ Then /^I should receive a file "(.*?)"$/ do |file|
 end
 
 # filler step until feature is implemented
+When /^I send a POST request to "(.*?)" with:$/ do |arg1, string|
+  pending # express the regexp above with the code you wish you had
+end
+
 Then /^the quiz should have (\d+) questions$/ do |num_questions|
     body = page.body
 end
