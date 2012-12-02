@@ -1,22 +1,20 @@
 %h3 User Groups
 
-.btn= link_to 'New User group', new_user_group_path
+= link_to 'Create User Group', new_user_group_path, :class => 'btn btn-primary'
 
 %br
 %br
 
 %table.table.table-striped
   %tr
-    %th
-    %th
-    %th
+    %th Name
     %th
 
   - @user_groups.each do |user_group|
     %tr
-      %td= user_group.name
-      %td= link_to 'Show', user_group
-      %td= link_to 'Edit', edit_user_group_path(user_group)
-      %td= link_to 'Destroy', user_group, method: :delete, data: { confirm: 'Are you sure?' }
-
+      %td= link_to user_group.name, user_group
+      %td
+        = link_to 'Destroy', user_group, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger index-action pull-right'
+        = link_to 'Edit', edit_user_group_path(user_group), :class => 'btn btn-primary index-action pull-right'
 %br
+

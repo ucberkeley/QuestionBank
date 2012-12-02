@@ -5,8 +5,9 @@
     = f.input :name
     = f.association :users, label: "Group members", :collection => @users, :input_html => { :multiple => true }, :blank => false
     %h4 Privileged users
-    = f.input :owner_user_ids, label: "Owners", hint: "an owner can also assign roles to other users", :collection => @users, :input_html => { :multiple => true }, :blank => false
+    = f.input :owner_user_ids, label: "Owners", :collection => @users, :input_html => { :multiple => true }, :blank => false
     = f.input :viewer_user_ids, label: "Viewers", :collection => @users, :input_html => { :multiple => true }, :blank => false
+    = f.submit 'Save', :class => 'btn btn-primary'
 
   .form-actions
     = f.button :submit

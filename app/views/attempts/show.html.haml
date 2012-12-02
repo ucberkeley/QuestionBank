@@ -1,8 +1,14 @@
+%h3 Attempt
+
 = link_to 'Edit', edit_attempt_path(@attempt)
-\&nbsp;|&nbsp;
-= link_to 'Back to Attempts', attempts_path
 
 %dl
+  %dt Question
+  %dd= @attempt.question.xml
+
+  %dt User
+  %dd= @attempt.user.name
+
   %dt Answer
   %dd= @attempt.answer
 
@@ -12,8 +18,4 @@
   %dt Created
   %dd= format_date(@attempt.created_at)
 
-  %dt Question
-  %dd= @attempt.question.xml
-
-  %dt User
-  %dd= @attempt.user.name
+ 

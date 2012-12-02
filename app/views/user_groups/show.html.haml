@@ -5,6 +5,16 @@
 %dl
   %dt Group
   %dd= @user_group.name
+  %dt Owners
+  %dd
+    %ul
+      - @user_group.owners.each do |user|
+        %li=user.name
+  %dt Viwers
+  %dd
+    %ul
+      - @user_group.owners.each do |user|
+        %li=user.name
   %dt Members
   %dd
     %ul

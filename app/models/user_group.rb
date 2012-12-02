@@ -10,6 +10,14 @@ class UserGroup < ActiveRecord::Base
     end
   end
 
+  def owners
+    users = User.by_role(:owner, self)
+  end
+
+  def viewers
+    users = User.by_role(:viewer, self)
+  end
+
   def owner_user_ids=(user_ids)
     @owner_user_ids = user_ids
   end

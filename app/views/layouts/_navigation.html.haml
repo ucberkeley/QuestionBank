@@ -3,14 +3,14 @@
 	%li= link_to 'Questions', questions_path
 	%li= link_to 'Tags', tags_path
 	%li= link_to 'Attempts', attempts_path
+	-if can? :read, UserGroup
+		%li= link_to 'User Groups', user_groups_path
 	%li= link_to 'Generate Quiz', prepare_quiz_path
 	%li= link_to 'Download Data', prepare_query_path
 %ul.nav.pull-right
 	- if user_signed_in?
-		%li= link_to 'Logout', signout_path
 		-if current_user.has_role? :admin
 			%li= link_to 'Admin', users_path
-		-if can? :read, UserGroup
-			%li= link_to 'User Group', user_groups_path
+		%li= link_to 'Logout', signout_path
 	- else
 		%li= link_to 'Login', signin_path

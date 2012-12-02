@@ -1,5 +1,5 @@
-%h3 User
-%p
-  User: #{@user.name}
-%p
-  Email: #{@user.email if @user.email}
+%h3 #{@user.name}
+
+%dl
+  %dt Email
+  %dd #{@user.email if @user.email}
