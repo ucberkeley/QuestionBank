@@ -41,3 +41,4 @@ gem 'jquery-rails'
 gem "thin"
 gem "haml"
 gem "fastercsv"
+gem 'hydra_attribute'

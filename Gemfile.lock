@@ -97,6 +97,8 @@ GEM
     hashie (1.2.0)
     hike (1.2.1)
     hpricot (0.8.6)
+    hydra_attribute (0.4.1)
+      activerecord (>= 3.1.0)
     i18n (0.6.1)
     journey (1.0.4)
     jquery-rails (2.1.4)
@@ -236,6 +238,7 @@ DEPENDENCIES
   haml
   haml-rails
   hpricot
+  hydra_attribute
   jquery-rails
   json_spec
   launchy
