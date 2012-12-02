@@ -1,6 +1,11 @@
 %p#notice= notice
 
+= link_to 'Back to User Groups', user_groups_path
+\&nbsp; &#xb7; &nbsp;
+= link_to 'Edit User Group', edit_user_group_path(@user_group)
 
-= link_to 'Edit', edit_user_group_path(@user_group)
-\|
-= link_to 'Back', user_groups_path
+%h3 View User Group
+
+%dl
+  %dt Name
+  %dd= @user_group.name

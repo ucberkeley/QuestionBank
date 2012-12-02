@@ -1,6 +1,6 @@
 %h3 Questions
 
-.btn= link_to 'New Question', new_question_path
+= link_to 'Create Question', new_question_path, :class => 'btn btn-primary'
 
 %br
 %br
@@ -18,8 +18,8 @@
       %td= question.tags.reduce('') do |sum, tag| tag.name + ', ' + sum end.slice(0..-3)
       %td= format_date(question.created_at)
       %td
-        = link_to 'Destroy', question, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini pull-right'
-        = link_to 'View', question, :class => 'btn btn-mini pull-right'
-        = link_to 'Edit', edit_question_path(question), :class => 'btn btn-mini pull-right'
+        = link_to 'Destroy', question, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger index-action pull-right'
+        = link_to 'View', question, :class => 'btn btn-info index-action pull-right'
+        = link_to 'Edit', edit_question_path(question), :class => 'btn btn-primary index-action pull-right'
 
 %br

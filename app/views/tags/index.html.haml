@@ -1,6 +1,6 @@
 %h3 Tags
 
-.btn= link_to 'New Tag', new_tag_path
+= link_to 'Create Tag', new_tag_path, :class => 'btn btn-primary'
 
 %br
 %br
@@ -14,7 +14,7 @@
     %tr
       %td= tag.name
       %td
-        = link_to 'Destroy', tag, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini pull-right'
-        = link_to 'Edit', edit_tag_path(tag), :class => 'btn btn-mini pull-right'
-        = link_to 'View', tag, :class => 'btn btn-mini pull-right'       
+        = link_to 'Destroy', tag, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger index-action pull-right'
+        = link_to 'Edit', edit_tag_path(tag), :class => 'btn btn-info index-action pull-right'
+        = link_to 'View', tag, :class => 'btn btn-primary index-action pull-right'    
 %br
