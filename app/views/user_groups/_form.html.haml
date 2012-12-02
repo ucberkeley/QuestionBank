@@ -2,8 +2,7 @@
   = f.error_notification
 
   .form-inputs
-    = f.input :owner_user_ids, :collection => @users, :input_html => { :multiple => true }, :blank => false
-    = f.input :viewer_user_ids, :collection => @users, :input_html => { :multiple => true }, :blank => false
-
-  .form-actions
-    = f.button :submit
+    = f.input :name
+    = f.input :owner_user_ids, :label => "Owners", :collection => @users, :input_html => { :multiple => true }, :blank => false
+    = f.input :viewer_user_ids, :label => "Viewers", :collection => @users, :input_html => { :multiple => true }, :blank => false
+    = f.submit 'Save', :class => 'btn btn-primary'

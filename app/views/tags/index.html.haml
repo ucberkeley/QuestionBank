@@ -12,9 +12,8 @@
 
   - @tags.each do |tag|
     %tr
-      %td= tag.name
+      %td= link_to tag.name, tag
       %td
         = link_to 'Destroy', tag, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger index-action pull-right'
-        = link_to 'Edit', edit_tag_path(tag), :class => 'btn btn-info index-action pull-right'
-        = link_to 'View', tag, :class => 'btn btn-primary index-action pull-right'    
+        = link_to 'Edit', edit_tag_path(tag), :class => 'btn btn-primary index-action pull-right'    
 %br
