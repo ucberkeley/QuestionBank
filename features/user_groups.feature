@@ -41,7 +41,7 @@ Feature: Access to data about student groups is determined by privilege levels
 		Given I am logged in as "Instructor X"
 		And I am on the user group edit page of "Group 1"
 		And I select "Instructor Y" from "user_group[owner_user_ids][]"
-		And I press "Update User group"
+		And I press "Save"
 		Then I sign out
 		When I am logged in as "Instructor Y"
 		And I am on the user groups page

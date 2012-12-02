@@ -10,9 +10,9 @@ Scenario: A user can view questions
 	
 Scenario: Add a new question
 	Given I am on the new question page
-	Then I should see "New Question"
+	Then I should see "Create Question"
 	When I fill in "question_xml" with "A sample question"
-	And press "Create Question"
+	And press "Save"
 	Then I should see "Question was successfully created."
 	And I should see "A sample question"
 
