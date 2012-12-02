@@ -6,7 +6,7 @@
 	-if can? :read, UserGroup
 		%li= link_to 'User Groups', user_groups_path
 	%li= link_to 'Generate Quiz', prepare_quiz_path
-	%li= link_to 'Download Data', prepare_query_path
+	%li= link_to 'Download Data', new_download_path
 	%li= link_to 'Upload Data', new_upload_path
 %ul.nav.pull-right
 	- if user_signed_in?

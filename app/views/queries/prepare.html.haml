@@ -1,9 +1,0 @@
-%h3 Download Data
-%p Download a CSV file with data about users' attempts to answer questions.
-%p Filter by a user group, a question group, or both.
-%br
-= simple_form_for :quiz, :url => execute_query_path, :html => {:class => 'form-vertical'} do |f|
-	.form-inputs
-		= f.input :user_group, :collection => @user_groups.collect{ |t| [t.name, t.id ]}
-		= f.input :question_group, :collection => @question_groups.collect{ |t| [t.name, t.id ]}
-		= f.button :submit, :value => "Download CSV", :id => "download_data_submit"

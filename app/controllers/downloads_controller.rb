@@ -1,8 +1,17 @@
 require 'csv'
 
-class QueriesController < ApplicationController
+class DownloadsController < ApplicationController
 
-  def execute
+  # GET /downloads/new
+  # GET /downloads/new.json
+  def new
+    @user_groups = UserGroup.accessible_by(current_ability)
+    @question_groups = QuestionGroup.accessible_by(current_ability)
+  end
+
+  # POST /downloads
+  # POST /downloads.json
+  def create
      if !params[:quiz][:user_group].blank? && !params[:quiz][:question_group].blank?
       user_group = UserGroup.find(params[:quiz][:user_group])
       question_group = QuestionGroup.find(params[:quiz][:question_group])
@@ -10,25 +19,23 @@ class QueriesController < ApplicationController
       authorize! :read, question_group
       @attempts = Attempt.retrieve_by_user_group_and_question_group(user_group.id, question_group.id)
       return self.export_to_csv(@attempts, user_group.name, question_group.name)
+    
     elsif !params[:quiz][:user_group].blank? && params[:quiz][:question_group].blank?
       user_group = UserGroup.find(params[:quiz][:user_group])
       authorize! :read, user_group
       @attempts = Attempt.retrieve_by_user_group(user_group.id)
       return self.export_to_csv(@attempts, user_group.name, false)
+    
     elsif params[:quiz][:user_group].blank? && !params[:quiz][:question_group].blank?
       question_group = QuestionGroup.find(params[:quiz][:question_group])
       authorize! :read, question_group
       @attempts = Attempt.retrieve_by_question_group(question_group.id)
       return self.export_to_csv(@attempts, false, question_group.name)
+    
     else
       flash[:error] = 'You must choose either a user group or a question group.'
-      redirect_to :action => 'prepare' and return
+      redirect_to :action => 'new' and return
     end
-  end
-
-  def prepare
-    @user_groups = UserGroup.accessible_by(current_ability)
-    @question_groups = QuestionGroup.accessible_by(current_ability)
   end
 
   def export_to_csv(attempts, user_group_name, question_group_name)       
@@ -58,6 +65,4 @@ class QueriesController < ApplicationController
     :type => 'text/csv',
     :disposition => 'attachment'
   end 
-
-
 end
