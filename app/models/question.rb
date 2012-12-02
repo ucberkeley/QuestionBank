@@ -1,4 +1,6 @@
 class Question < ActiveRecord::Base
+  include HydraAttribute::ActiveRecord
+
 	has_and_belongs_to_many :tags
   has_and_belongs_to_many :question_groups
 	belongs_to :user
