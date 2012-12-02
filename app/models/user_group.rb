@@ -1,5 +1,6 @@
 class UserGroup < ActiveRecord::Base
   has_and_belongs_to_many :users
+  has_many :attempts, :through => :users
   after_save :save_roles
 
   def owner_user_ids

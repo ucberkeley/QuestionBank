@@ -12,13 +12,16 @@ class Ability
     else
         can :read, UserGroup, :id => UserGroup.with_role(:viewer, user).map{ |group| group.id }
         can :manage, UserGroup, :id => UserGroup.with_role(:owner, user).map{ |group| group.id }
-        can :read, QuestionGroup, :id => QuestionGroup.with_role(:viewer, user).map{ |group| group.id }
-        can :manage, QuestionGroup, :id => QuestionGroup.with_role(:owner, user).map{ |group| group.id }
+        can :manage, Attempt, :id => UserGroup.with_role([:owner, :viewer], user).map{ |group| group.attempts.map{|attempt| attempt.id } }.flatten.uniq
+        # can :read, QuestionGroup, :id => QuestionGroup.with_role(:viewer, user).map{ |group| group.id }
+        # can :manage, QuestionGroup, :id => QuestionGroup.with_role(:owner, user).map{ |group| group.id }
+        can :manage, QuestionGroup
         can :read, Tag
         can :manage, Question
         cannot :quiz, Question
     end
-    can :manage, User, :id => user.id
+    can :manage, User, :id => user.id # allow the user to change its own profile
+
     # Define abilities for the passed in user here. For example:
     #
     #   user ||= User.new # guest user (not logged in)

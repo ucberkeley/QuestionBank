@@ -1,6 +1,7 @@
 class Attempt < ActiveRecord::Base
   belongs_to :question
   belongs_to :user
+  delegate :user_group, :to =>:user, :allow_nil => true
 
   def self.retrieve_by_user_group(user_group_id) 
   	Attempt.includes(:user => [:user_groups]).where("user_groups.id = ?", user_group_id)
