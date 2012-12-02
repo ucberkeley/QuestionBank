@@ -4,7 +4,7 @@
       %a.close{"data-dismiss" => "modal"} ×
       %h3 Change Role
     .modal-body
-      = f.input :role_ids, :collection => Role.all, :as => :check_boxes, :label_method => lambda {|t| t.name.titleize}, :label => false, :item_wrapper_class => 'inline'
+      = f.input :role_ids, :collection => User.find(1).roles.where(:resource_type => nil), :as => :check_boxes, :label_method => lambda {|t| t.name.titleize}, :label => false
     .modal-footer
       = f.submit "Change Role", :class => "btn"
       %a.btn{"data-dismiss" => "modal", :href => "#"} Close
