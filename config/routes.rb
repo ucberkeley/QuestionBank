@@ -16,6 +16,9 @@ QuestionBank::Application.routes.draw do
   get '/queries/prepare' => 'queries#prepare', :as => 'prepare_query'
   post '/queries/execute' => 'queries#execute', :as => 'execute_query'
 
+  get '/uploads/new' => 'uploads#new', :as => 'new_upload'
+  post '/uploads' => 'uploads#create', :as => 'create_upload'
+
   root :to => "home#index"
   resources :users, :only => [:index, :show, :edit, :update ]
   match '/auth/:provider/callback' => 'sessions#create'

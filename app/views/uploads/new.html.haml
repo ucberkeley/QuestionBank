@@ -1,0 +1,41 @@
+%h3 Upload Data
+
+= form_tag '/uploads', :multipart => true do
+  %h5 Categorize Data
+  %p Do you want to upload data about questions or users?
+  = radio_button_tag 'model', 'question', true, :class => 'pull-left', :style => 'margin-right: 10px;'
+  = label :model, :question, 'Questions'
+  %div.clearfix
+  = radio_button_tag 'model', 'user', false, :class => 'pull-left', :style => 'margin-right: 10px;'
+  = label :model, :user, 'Users' 
+  %p 
+    If you are uploading data about 
+    %strong questions, 
+    include a column with the name
+    %strong Question ID.
+  %p 
+    If you are uploading data about 
+    %strong users, 
+    include a column with the name
+    %strong User ID.
+
+  %br
+
+  %h5 Specify Attribute
+  %p Specify a new attribute or choose an existing one.
+  %p The name of the attribute must match the name of a column in your file.
+  %h6 New
+  = text_field_tag 'new_attribute'
+  %h6 Existing
+  = select_tag 'existing_attribute'
+
+  %br
+
+  %h5 Choose File
+  = file_field_tag 'file'
+  %div.clearfix
+
+  %br
+
+  %input.btn.btn-primary(type='submit' value='Upload CSV')
+%br
