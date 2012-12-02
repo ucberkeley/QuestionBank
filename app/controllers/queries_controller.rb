@@ -3,20 +3,20 @@ require 'csv'
 class QueriesController < ApplicationController
 
   def execute
-     if !params[:user_group][:id].blank? && !params[:question_group][:id].blank?
-      user_group = UserGroup.find(params[:user_group][:id])
-      question_group = QuestionGroup.find(params[:question_group][:id])
+     if !params[:quiz][:user_group].blank? && !params[:quiz][:question_group].blank?
+      user_group = UserGroup.find(params[:quiz][:user_group])
+      question_group = QuestionGroup.find(params[:quiz][:question_group])
       authorize! :read, user_group
       authorize! :read, question_group
       @attempts = Attempt.retrieve_by_user_group_and_question_group(user_group.id, question_group.id)
       return self.export_to_csv(@attempts, user_group.name, question_group.name)
-    elsif !params[:user_group][:id].blank? && params[:question_group][:id].blank?
-      user_group = UserGroup.find(params[:user_group][:id])
+    elsif !params[:quiz][:user_group].blank? && params[:quiz][:question_group].blank?
+      user_group = UserGroup.find(params[:quiz][:user_group])
       authorize! :read, user_group
       @attempts = Attempt.retrieve_by_user_group(user_group.id)
       return self.export_to_csv(@attempts, user_group.name, false)
-    elsif params[:user_group][:id].blank? && !params[:question_group][:id].blank?
-      question_group = QuestionGroup.find(params[:question_group][:id])
+    elsif params[:quiz][:user_group].blank? && !params[:quiz][:question_group].blank?
+      question_group = QuestionGroup.find(params[:quiz][:question_group])
       authorize! :read, question_group
       @attempts = Attempt.retrieve_by_question_group(question_group.id)
       return self.export_to_csv(@attempts, false, question_group.name)

@@ -2,14 +2,8 @@
 %p Download a CSV file with data about users' attempts to answer questions.
 %p Filter by a user group, a question group, or both.
 %br
-= form_tag('/queries/execute') do
-	%table
-		%tr
-			%td= label_tag('user_group[id]', 'User Group')
-			%td= label_tag('question_group[id]', 'Question Group')
-		%tr
-			%td= select_tag('user_group[id]',options_from_collection_for_select(@user_groups, 'id', 'name'), :include_blank => true)
-			%td= select_tag('question_group[id]', options_from_collection_for_select(@question_groups, 'id', 'name'), :include_blank => true)
-		%tr
-			%td
-				%button.btn{:type => 'submit', :id => 'download_data_submit'} Download CSV
+= simple_form_for :quiz, :url => execute_query_path, :html => {:class => 'form-vertical'} do |f|
+	.form-inputs
+		= f.input :user_group, :collection => @user_groups.collect{ |t| [t.name, t.id ]}
+		= f.input :question_group, :collection => @question_groups.collect{ |t| [t.name, t.id ]}
+		= f.button :submit, :value => "Download CSV", :id => "download_data_submit"

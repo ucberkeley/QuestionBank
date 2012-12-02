@@ -53,20 +53,10 @@ Feature: An authorized user can download data about attempts
 		And I am on the download data page
 		Then I should not see "User Group 1"
 
-	Scenario: A user with "viewer" privileges can request data for a question group
-		Given I am logged in as "Instructor X"
-		And I am on the download data page
-		Then I should see "Question Group 1"
-
-	Scenario: A user without "viewer" privileges cannot request data for a question group
-		Given I am logged in as "Student A"
-		And I am on the download data page
-		Then I should not see "Question Group 1"
-
 	Scenario: A user with "viewer" privileges can download data for a user group
 		Given I am logged in as "Instructor X"
 		And I am on the download data page
-		When I select "User Group 2" from "user_group_id"
+		When I select "User Group 2" from "quiz_user_group"
 		And I press "download_data_submit"
 		Then I should get a download with the filename "User_Group_2_attempts.csv"
 		And I should see "Student A"
@@ -75,15 +65,15 @@ Feature: An authorized user can download data about attempts
 	Scenario: A user with "viewer" privileges can download data for a question group
 		Given I am logged in as "Instructor X"
 		And I am on the download data page
-		When I select "Question Group 1" from "question_group_id"
+		When I select "Question Group 1" from "quiz_question_group"
 		And I press "download_data_submit"
 		Then I should get a download with the filename "Question_Group_1_attempts.csv"
 
 	Scenario: A user with "viewer" privileges can download data for a user group and a question group
 		Given I am logged in as "Instructor X"
 		And I am on the download data page
-		When I select "User Group 1" from "user_group_id"
-		And I select "Question Group 1" from "question_group_id"
+		When I select "User Group 1" from "quiz_user_group"
+		And I select "Question Group 1" from "quiz_question_group"
 		And I press "download_data_submit"
 		Then I should get a download with the filename "User_Group_1_Question_Group_1_attempts.csv"
 

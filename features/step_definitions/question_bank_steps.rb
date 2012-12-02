@@ -13,7 +13,7 @@ end
 Given /^I added a question with content "(.*?)"$/ do |question_xml|
     visit path_to("the new question page")
     fill_in 'question_xml', :with => question_xml
-    click_button 'Create Question'
+    click_button 'Save'
 end
 
 # filler method until feature is implemented

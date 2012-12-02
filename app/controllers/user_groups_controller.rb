@@ -26,6 +26,7 @@ class UserGroupsController < ApplicationController
   # GET /user_groups/new.json
   def new
     @user_group = UserGroup.new
+    @users = User.all
 
     respond_to do |format|
       format.html # new.html.erb

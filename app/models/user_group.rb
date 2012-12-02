@@ -1,5 +1,6 @@
 class UserGroup < ActiveRecord::Base
   has_and_belongs_to_many :users
+  has_many :attempts, :through => :users
   after_save :save_roles
 
   def owner_user_ids
@@ -8,6 +9,14 @@ class UserGroup < ActiveRecord::Base
     else
       users = User.by_role(:owner, self).map(&:id) 
     end
+  end
+
+  def owners
+    users = User.by_role(:owner, self)
+  end
+
+  def viewers
+    users = User.by_role(:viewer, self)
   end
 
   def owner_user_ids=(user_ids)
