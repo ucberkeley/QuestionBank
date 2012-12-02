@@ -1,6 +1,11 @@
-%h1 Listing user_groups
+%h3 User Groups
 
-%table
+.btn= link_to 'New User group', new_user_group_path
+
+%br
+%br
+
+%table.table.table-striped
   %tr
     %th
     %th
@@ -15,5 +20,3 @@
       %td= link_to 'Destroy', user_group, method: :delete, data: { confirm: 'Are you sure?' }
 
 %br
-
-= link_to 'New User group', new_user_group_path

@@ -1,6 +1,12 @@
-%p#notice= notice
-
-
 = link_to 'Edit', edit_user_group_path(@user_group)
 \|
 = link_to 'Back', user_groups_path
+
+%dl
+  %dt Group
+  %dd= @user_group.name
+  %dt Members
+  %dd
+    %ul
+      - @user_group.users.each do |user|
+        %li= user.name
