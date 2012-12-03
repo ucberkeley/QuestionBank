@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121202112542) do
+ActiveRecord::Schema.define(:version => 20121203233234) do
 
   create_table "attempts", :force => true do |t|
     t.text     "answer"
@@ -54,6 +54,16 @@ ActiveRecord::Schema.define(:version => 20121202112542) do
 
   add_index "hydra_boolean_questions", ["entity_id", "hydra_attribute_id"], :name => "hydra_boolean_questions_index", :unique => true
 
+  create_table "hydra_boolean_users", :force => true do |t|
+    t.integer  "entity_id",          :null => false
+    t.integer  "hydra_attribute_id", :null => false
+    t.boolean  "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "hydra_boolean_users", ["entity_id", "hydra_attribute_id"], :name => "hydra_boolean_users_index", :unique => true
+
   create_table "hydra_datetime_questions", :force => true do |t|
     t.integer  "entity_id",          :null => false
     t.integer  "hydra_attribute_id", :null => false
@@ -63,6 +73,16 @@ ActiveRecord::Schema.define(:version => 20121202112542) do
   end
 
   add_index "hydra_datetime_questions", ["entity_id", "hydra_attribute_id"], :name => "hydra_datetime_questions_index", :unique => true
+
+  create_table "hydra_datetime_users", :force => true do |t|
+    t.integer  "entity_id",          :null => false
+    t.integer  "hydra_attribute_id", :null => false
+    t.datetime "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "hydra_datetime_users", ["entity_id", "hydra_attribute_id"], :name => "hydra_datetime_users_index", :unique => true
 
   create_table "hydra_float_questions", :force => true do |t|
     t.integer  "entity_id",          :null => false
@@ -74,6 +94,16 @@ ActiveRecord::Schema.define(:version => 20121202112542) do
 
   add_index "hydra_float_questions", ["entity_id", "hydra_attribute_id"], :name => "hydra_float_questions_index", :unique => true
 
+  create_table "hydra_float_users", :force => true do |t|
+    t.integer  "entity_id",          :null => false
+    t.integer  "hydra_attribute_id", :null => false
+    t.float    "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "hydra_float_users", ["entity_id", "hydra_attribute_id"], :name => "hydra_float_users_index", :unique => true
+
   create_table "hydra_integer_questions", :force => true do |t|
     t.integer  "entity_id",          :null => false
     t.integer  "hydra_attribute_id", :null => false
@@ -83,6 +113,16 @@ ActiveRecord::Schema.define(:version => 20121202112542) do
   end
 
   add_index "hydra_integer_questions", ["entity_id", "hydra_attribute_id"], :name => "hydra_integer_questions_index", :unique => true
+
+  create_table "hydra_integer_users", :force => true do |t|
+    t.integer  "entity_id",          :null => false
+    t.integer  "hydra_attribute_id", :null => false
+    t.integer  "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "hydra_integer_users", ["entity_id", "hydra_attribute_id"], :name => "hydra_integer_users_index", :unique => true
 
   create_table "hydra_sets", :force => true do |t|
     t.string   "entity_type", :limit => 32, :null => false
@@ -103,6 +143,16 @@ ActiveRecord::Schema.define(:version => 20121202112542) do
 
   add_index "hydra_string_questions", ["entity_id", "hydra_attribute_id"], :name => "hydra_string_questions_index", :unique => true
 
+  create_table "hydra_string_users", :force => true do |t|
+    t.integer  "entity_id",          :null => false
+    t.integer  "hydra_attribute_id", :null => false
+    t.string   "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "hydra_string_users", ["entity_id", "hydra_attribute_id"], :name => "hydra_string_users_index", :unique => true
+
   create_table "hydra_text_questions", :force => true do |t|
     t.integer  "entity_id",          :null => false
     t.integer  "hydra_attribute_id", :null => false
@@ -112,6 +162,16 @@ ActiveRecord::Schema.define(:version => 20121202112542) do
   end
 
   add_index "hydra_text_questions", ["entity_id", "hydra_attribute_id"], :name => "hydra_text_questions_index", :unique => true
+
+  create_table "hydra_text_users", :force => true do |t|
+    t.integer  "entity_id",          :null => false
+    t.integer  "hydra_attribute_id", :null => false
+    t.text     "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "hydra_text_users", ["entity_id", "hydra_attribute_id"], :name => "hydra_text_users_index", :unique => true
 
   create_table "question_groups", :force => true do |t|
     t.string   "name"
@@ -173,9 +233,12 @@ ActiveRecord::Schema.define(:version => 20121202112542) do
     t.string   "email"
     t.string   "provider"
     t.string   "uid"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.integer  "hydra_set_id"
   end
+
+  add_index "users", ["hydra_set_id"], :name => "users_hydra_set_id_index"
 
   create_table "users_roles", :id => false, :force => true do |t|
     t.integer "user_id"

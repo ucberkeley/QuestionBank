@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   rolify
+  include HydraAttribute::ActiveRecord
   attr_accessible :role_ids, :provider, :uid, :name, :email
   has_many :questions
   has_many :attempts
