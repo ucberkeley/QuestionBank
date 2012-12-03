@@ -3,11 +3,8 @@
 
   .form-inputs
     = f.input :name
-    = f.association :users, label: "Group members", :collection => @users, :input_html => { :multiple => true }, :blank => false
-    %h4 Privileged users
+    = f.association :users, label: "Members", :collection => @users, :input_html => { :multiple => true }, :blank => false
+    %h5 User With Privileges
     = f.input :owner_user_ids, label: "Owners", :collection => @users, :input_html => { :multiple => true }, :blank => false
     = f.input :viewer_user_ids, label: "Viewers", :collection => @users, :input_html => { :multiple => true }, :blank => false
-   
-
-  .form-actions
     = f.submit 'Save', :class => 'btn btn-primary'
