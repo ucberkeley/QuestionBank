@@ -17,6 +17,7 @@ QuestionBank::Application.routes.draw do
   post '/downloads' => 'downloads#create', :as => 'create_download'
 
   get '/uploads/new' => 'uploads#new', :as => 'new_upload'
+  get '/uploads/attribute/new' => 'uploads#new_attribute', :as => 'new_attribute'
   post '/uploads' => 'uploads#create', :as => 'create_upload'
 
   root :to => "home#index"
