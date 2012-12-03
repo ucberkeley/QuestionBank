@@ -1,0 +1,39 @@
+.span12
+  %h3 Creating New Attribute
+  %p Here you can add new custom data columns to the database
+
+.span12
+  = simple_form_for :new_attribute, :url => create_upload_path, :html => {:multipart => true, :class => 'form-horizontal'} do |f|
+    .form-inputs
+      =f.input :name
+      =f.input :backend_type, :collection => [:string, :text, :integer, :float, :boolean, :datetime]
+      =f.input :data_table, :collection => [:Questions, :Users], :as => :radio
+    .form-actions
+      =f.submit :submit, :value => "Add", :id => "create_new_attribute", :class => 'btn btn-primary'
+
+.span12
+  %h4 Existing Attributes
+  %p Specify new attribute name and formats here for different data types here
+
+.span5
+  %h5 Question Attributes
+  %table.table.table-striped
+    %tr
+      %th Column Name
+      %th Data Type
+    - @question_attributes.each do |attr|
+      %tr
+        %td=attr.name
+        %td=attr.backend_type
+
+
+.span5
+  %h5 User Attributes
+  %table.table.table-striped
+    %tr
+      %th Column Name
+      %th Data Type
+    - @user_attributes.each do |attr|
+      %tr
+        %td=attr.name
+        %td=attr.backend_type

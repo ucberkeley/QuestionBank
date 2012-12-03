@@ -7,7 +7,8 @@ class UploadsController < ApplicationController
 
   # GET /uploads/attribute/new
   def new_attribute
-
+    @question_attributes = Question.hydra_attributes
+    @user_attributes = User.hydra_attributes
   end
 
   # POST /uploads
