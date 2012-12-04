@@ -3,11 +3,11 @@
   %p Here you can add new custom data columns to the database
 
 .span12
-  = simple_form_for :new_attribute, :url => create_upload_path, :html => {:multipart => true, :class => 'form-horizontal'} do |f|
+  = simple_form_for :new_attribute, :url => create_attribute_path, :html => {:multipart => true, :class => 'form-horizontal'} do |f|
     .form-inputs
       =f.input :name
-      =f.input :backend_type, :collection => [:string, :text, :integer, :float, :boolean, :datetime]
-      =f.input :data_table, :collection => [:Questions, :Users], :as => :radio
+      =f.input :backend_type, :collection => [:string, :text, :integer, :float, :boolean, :datetime], :default => :string
+      =f.input :data_table, :collection => [:Questions, :Users], :as => :radio_buttons, :checked => :Questions
     .form-actions
       =f.submit :submit, :value => "Add", :id => "create_new_attribute", :class => 'btn btn-primary'
 

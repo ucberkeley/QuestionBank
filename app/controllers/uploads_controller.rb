@@ -11,6 +11,22 @@ class UploadsController < ApplicationController
     @user_attributes = User.hydra_attributes
   end
 
+  # POST /uploads/attribute/new
+  def create_attribute
+    flash[:error] = 'You must supply a new column name.' and redirect_to :action => 'new_attribute' and return if params[:new_attribute][:name].blank?
+    data_table = params[:new_attribute][:data_table] == "Questions" ? Question : User;
+    column_name = current_user.name + ":" + params[:new_attribute][:name]
+    flash[:error] = 'Specified column already exist.' and redirect_to :action => 'new_attribute' and return if data_table.hydra_attributes.exists?(:name => column_name)
+
+    @question_attributes = Question.hydra_attributes
+    @user_attributes = User.hydra_attributes
+
+    data_table.hydra_attributes.create(name: column_name, backend_type: params[:new_attribute][:backend_type])
+    flash[:notice] = "New attribute successfully created"
+
+    redirect_to :action => 'new_attribute' 
+  end
+
   # POST /uploads
   def create
     # @user_group = UserGroup.new(params[:user_group])
