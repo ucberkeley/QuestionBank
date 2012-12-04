@@ -8,7 +8,11 @@
       If you are uploading data about 
       %strong users, 
       include a column with the name
-      %strong User ID.
+      %strong User Id
+      , or
+      %strong Question Id 
+      for
+      %strong questions
     .form-inputs
       =f.input :upload_file, :as => :file
       =f.submit :submit, :value => "Upload CSV", :id => "upload_data_submit", :class => 'btn btn-primary'
