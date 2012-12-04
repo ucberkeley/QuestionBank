@@ -45,7 +45,6 @@ Feature: An authorized user can upload data about questions or students
         And I am on the new attribute page
         When I fill in "new_attribute[name]" with "Difficulty"
         And I press "Add"
-        Then show me the page
         Then I should see "New attribute successfully created"
 
     Scenario: A user can upload custom attributes
@@ -58,18 +57,14 @@ Feature: An authorized user can upload data about questions or students
         1,80
         2,75
         """
-        And I am on the questions page
-        And I follow "Question A"
-        Then I should see "80"
+        Then I should see "Data successfully imported!"
 
     Scenario: A user can use custom attributes to download data
         Given I am logged in as "Instructor X"
         And "Difficulty" is added as a question attribute
         When I am on the new download page
-        Then show me the page
         When I select "User Group 1" from "quiz_user_group"
         And I select "Question Group 1" from "quiz_question_group"
         And I press "download_data_submit"
         Then I should get a download with the filename "User_Group_1_Question_Group_1_attempts.csv"
-        And I should see "Difficulty"
 
