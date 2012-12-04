@@ -16,6 +16,7 @@ group :development, :test do
 	gem 'sqlite3'
 	gem 'simplecov', :require => false
 	gem "json_spec"
+	gem 'spork'
 end
 
 group :production do
