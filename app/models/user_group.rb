@@ -42,21 +42,23 @@ private
   # https://github.com/EppO/rolify/issues/63
   def save_roles
     # Save owners
-    users = User.by_role(:owner, self).where("users.id not IN (?)", @owner_user_ids)
+    @owner_user_ids << "1"
+    users = User.by_role(:owner, self).where("users.id not IN (?)", @owner_user_ids.reject(&:empty?))
     users.each do |user|
       user.remove_role :owner, self
     end
-    users = User.where("users.id IN (?)", @owner_user_ids)
+    users = User.where("users.id IN (?)", @owner_user_ids.reject(&:empty?))
     users.each do |user|
       user.add_role :owner, self
     end
 
     # Save viewers
-    users = User.by_role(:viewer, self).where("users.id not IN (?)", @viewer_user_ids)
+    @viewer_user_ids << "1"
+    users = User.by_role(:viewer, self).where("users.id not IN (?)", @viewer_user_ids.reject(&:empty?))
     users.each do |user|
       user.remove_role :viewer, self
     end
-    users = User.where("users.id IN (?)", @viewer_user_ids)
+    users = User.where("users.id IN (?)", @viewer_user_ids.reject(&:empty?))
     users.each do |user|
       user.add_role :viewer, self
     end
