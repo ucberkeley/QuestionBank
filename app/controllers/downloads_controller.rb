@@ -5,6 +5,7 @@ class DownloadsController < ApplicationController
   # GET /downloads/new
   # GET /downloads/new.json
   def new
+    authenticate_user!
     @user_groups = UserGroup.accessible_by(current_ability)
     @question_groups = QuestionGroup.accessible_by(current_ability)
     @question_attributes = Question.hydra_attributes
@@ -14,6 +15,7 @@ class DownloadsController < ApplicationController
   # POST /downloads
   # POST /downloads.json
   def create
+    authenticate_user!
     question_attributes = Question.hydra_attributes.find(params[:quiz][:question_attributes].reject!(&:blank?))
     user_attributes = User.hydra_attributes.find(params[:quiz][:user_attributes].reject!(&:blank?))
 
@@ -41,6 +43,7 @@ class DownloadsController < ApplicationController
   end
 
   def export_to_csv(attempts, user_group_name, question_group_name, question_attributes, user_attributes)       
+    authenticate_user!
     header_row = ["User Id", "User Name", "Question Id", "Answer", "Is Correct", "Created At"]
     header_row += question_attributes.map(&:name)
     header_row += user_attributes.map(&:name)
