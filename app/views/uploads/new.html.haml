@@ -14,7 +14,7 @@
       for
       %strong questions
     .form-inputs
-      =f.input :upload_file, :as => :file
+      =f.input :upload_file, :label =>"CSV File", :as => :file
       =f.submit :submit, :value => "Upload CSV", :id => "upload_data_submit", :class => 'btn btn-primary'
 
 .span12
@@ -33,16 +33,16 @@
         %td=attr.backend_type
 
 
-.span5
-  %h5 User Attributes
-  %table.table.table-striped
-    %tr
-      %th Column Name
-      %th Data Type
-    - @user_attributes.each do |attr|
-      %tr
-        %td=attr.name
-        %td=attr.backend_type
+/ .span5
+/   %h5 User Attributes
+/   %table.table.table-striped
+/     %tr
+/       %th Column Name
+/       %th Data Type
+/     - @user_attributes.each do |attr|
+/       %tr
+/         %td=attr.name
+/         %td=attr.backend_type
 
 .span12
   =link_to 'Create New Attribute', new_attribute_path, :class => 'btn btn-primary'

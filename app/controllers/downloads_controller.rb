@@ -9,7 +9,7 @@ class DownloadsController < ApplicationController
     @user_groups = UserGroup.accessible_by(current_ability)
     @question_groups = QuestionGroup.accessible_by(current_ability)
     @question_attributes = Question.hydra_attributes
-    @user_attributes = User.hydra_attributes
+    # @user_attributes = User.hydra_attributes
   end
 
   # POST /downloads
@@ -17,7 +17,8 @@ class DownloadsController < ApplicationController
   def create
     authenticate_user!
     question_attributes = Question.hydra_attributes.find(params[:quiz][:question_attributes].reject!(&:blank?))
-    user_attributes = User.hydra_attributes.find(params[:quiz][:user_attributes].reject!(&:blank?))
+    # user_attributes = User.hydra_attributes.find(params[:quiz][:user_attributes].reject!(&:blank?))
+    user_attributes = []
 
     if !params[:quiz][:user_group].blank? && !params[:quiz][:question_group].blank?
       user_group = UserGroup.find(params[:quiz][:user_group])

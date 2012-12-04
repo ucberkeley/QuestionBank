@@ -7,7 +7,7 @@
     .form-inputs
       =f.input :name
       =f.input :backend_type, :collection => [:string, :text, :integer, :float, :boolean, :datetime], :default => :string
-      =f.input :data_table, :collection => [:Questions, :Users], :as => :radio_buttons, :checked => :Questions
+      /=f.input :data_table, :collection => [:Questions, :Users], :as => :radio_buttons, :checked => :Questions
     .form-actions
       =f.submit :submit, :value => "Add", :id => "create_new_attribute", :class => 'btn btn-primary'
 
@@ -27,13 +27,13 @@
         %td=attr.backend_type
 
 
-.span5
-  %h5 User Attributes
-  %table.table.table-striped
-    %tr
-      %th Column Name
-      %th Data Type
-    - @user_attributes.each do |attr|
-      %tr
-        %td=attr.name
-        %td=attr.backend_type
+/ .span5
+/   %h5 User Attributes
+/   %table.table.table-striped
+/     %tr
+/       %th Column Name
+/       %th Data Type
+/     - @user_attributes.each do |attr|
+/       %tr
+/         %td=attr.name
+/         %td=attr.backend_type

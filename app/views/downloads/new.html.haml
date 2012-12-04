@@ -6,6 +6,7 @@
 	.form-inputs
 		= f.input :user_group, :collection => @user_groups.collect{ |t| [t.name, t.id ]}, :label => 'User Group', :required => false
 		= f.input :question_group, :collection => @question_groups.collect{ |t| [t.name, t.id ]}, :label => 'Question Group', :required => false
-		=f.input :question_attributes, :collection => @question_attributes, :label => "Additional Question Attributes", :input_html => {:multiple => true} , :required => false
-		=f.input :user_attributes, :collection => @user_attributes, :label => "Additional User Attributes", :input_html => {:multiple => true}, :required => false
+		= f.input :question_attributes, :collection => @question_attributes, :label => "Additional Question Attributes", :input_html => {:multiple => true} , :required => false
 		= f.button :submit, :value => "Download CSV", :id => "download_data_submit", :class => 'btn btn-primary'
+
+/= f.input :user_attributes, :collection => @user_attributes, :label => "Additional User Attributes", :input_html => {:multiple => true}, :required => false

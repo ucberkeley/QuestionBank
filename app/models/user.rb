@@ -28,5 +28,5 @@ class User < ActiveRecord::Base
       end
     end
   end
-  include HydraAttribute::ActiveRecord
+
 end
