@@ -7,6 +7,8 @@ class DownloadsController < ApplicationController
   def new
     @user_groups = UserGroup.accessible_by(current_ability)
     @question_groups = QuestionGroup.accessible_by(current_ability)
+    @question_attributes = Question.hydra_attributes
+    @user_attributes = User.hydra_attributes
   end
 
   # POST /downloads
@@ -40,10 +42,10 @@ class DownloadsController < ApplicationController
 
   def export_to_csv(attempts, user_group_name, question_group_name)       
     csv_string = CSV.generate do |csv|
-         csv << ["User Id", "User Name", "Question Id", "Answer", "Is Correct", "Created At"]
-         attempts.each do |attempt|
-           csv << [attempt.id, User.find(attempt.user_id).name, attempt.question_id, attempt.answer, attempt.is_correct, attempt.created_at]
-         end
+     csv << ["User Id", "User Name", "Question Id", "Answer", "Is Correct", "Created At"]
+     attempts.each do |attempt|
+       csv << [attempt.id, User.find(attempt.user_id).name, attempt.question_id, attempt.answer, attempt.is_correct, attempt.created_at]
+     end
     end         
     
     if user_group_name && question_group_name
