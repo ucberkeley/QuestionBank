@@ -1,6 +1,5 @@
 class Question < ActiveRecord::Base
-  include HydraAttribute::ActiveRecord
-
+  attr_accessible :xml
 	has_and_belongs_to_many :tags
   has_and_belongs_to_many :question_groups
 	belongs_to :user
@@ -15,4 +14,5 @@ class Question < ActiveRecord::Base
       return all_tagged_questions.take([all_tagged_questions.length, Integer(number_of_questions)].min)
     end
   end
+  include HydraAttribute::ActiveRecord
 end

@@ -125,6 +125,17 @@ Then /^I should receive a file "(.*?)"$/ do |file|
   page.response_headers['Content-Type'].should == "text/csv" && page.response_headers['Content-Disposition'].should =~ /#{file}/
 end
 
+When /^I upload a CSV file with the following:$/ do |string|
+  visit new_upload_path
+  file = Tempfile.new(string)
+  attach_file(:upload_upload_file, file.path)
+  click_button "Upload CSV"
+end
+
+Given /^"(.*?)" is added as a question attribute$/ do |arg1|
+  Question.hydra_attributes.create(name: arg1, backend_type: 'string')
+end
+
 # filler step until feature is implemented
 When /^I send a POST request to "(.*?)" with:$/ do |arg1, string|
   pending # express the regexp above with the code you wish you had
