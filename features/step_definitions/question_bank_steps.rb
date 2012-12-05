@@ -144,11 +144,6 @@ Given /^"(.*?)" has admin privilege$/ do |name|
   User.find_by_name(name).add_role :admin
 end
 
-# filler step until feature is implemented
-When /^I send a POST request to "(.*?)" with:$/ do |arg1, string|
-  pending # express the regexp above with the code you wish you had
-end
-
 Then /^the quiz should have (\d+) questions$/ do |num_questions|
     body = page.body
 end
@@ -159,12 +154,6 @@ Then /^the quiz should have the topic "(.*?)"$/ do |tag|
     else
         assert page.has_content?(tag)
     end
-end
-
-Then /^I should see an under\-privileged error message$/ do
-    pending
-    # body = page.body
-    # page.should have_content "Only instructors are allowed to generate quizzes"
 end
 
 Then /^I should get a download with the filename "([^\"]*)"$/ do |filename|
@@ -179,47 +168,10 @@ Given /^"(.*?)" is added as a user attribute$/ do |arg1|
   UserAttribute.create(name: arg1, backend_type: 'string')
 end
 
-Given /^I have no privileges in group "(.*?)"$/ do |arg1|
-  pending # express the regexp above with the code you wish you had
-end
-
-Given /^I try to view analytics of "(.*?)"$/ do |arg1|
-  pending # express the regexp above with the code you wish you had
-end
-
-Given /^I have "(.*?)" privilege in group "(.*?)"$/ do |arg1, arg2|
-  pending # express the regexp above with the code you wish you had
-end
-
-Given /^I assign "(.*?)" priviledge to "(.*?)"$/ do |arg1, arg2|
-  pending # express the regexp above with the code you wish you had
-end
-
-Then /^I should see "(.*?)" as a "(.*?)"$/ do |arg1, arg2|
-  pending # express the regexp above with the code you wish you had
-end
-
-Given /^I have "(.*?)" privilege$/ do |arg1|
-  pending # express the regexp above with the code you wish you had
-end
-
-Then /^I should see (\d+) groups$/ do |arg1|
-  pending # express the regexp above with the code you wish you had
-end
-
 And /^I should see an error message$/ do 
   if page.respond_to? :should
     page.should have_selector('#flash_error')
   else
     assert page.has_selector?('#flash_error')
   end
-end
-
-When /^I upload a CSV file with the following data:$/ do |table|
-  # table is a Cucumber::Ast::Table
-  # pending # express the regexp above with the code you wish you had
-end
-
-Then /^the attribute with the name "(.*?)" and the value "(.*?)" for question "(.*?)" and user "(.*?)" should be stored in the database$/ do |arg1, arg2, arg3, arg4|
-  # pending # express the regexp above with the code you wish you had
 end
