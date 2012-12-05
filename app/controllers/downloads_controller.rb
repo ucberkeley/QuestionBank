@@ -8,7 +8,7 @@ class DownloadsController < ApplicationController
     authenticate_user!
     @user_groups = UserGroup.accessible_by(current_ability)
     @question_groups = QuestionGroup.accessible_by(current_ability)
-    @question_attributes = Question.hydra_attributes
+    @question_attributes = QuestionAttribute.all
     # @user_attributes = User.hydra_attributes
   end
 
@@ -16,7 +16,7 @@ class DownloadsController < ApplicationController
   # POST /downloads.json
   def create
     authenticate_user!
-    question_attributes = Question.hydra_attributes.find(params[:quiz][:question_attributes].reject!(&:blank?))
+    question_attributes = QuestionAttribute.find(params[:quiz][:question_attributes].reject!(&:blank?))
     # user_attributes = User.hydra_attributes.find(params[:quiz][:user_attributes].reject!(&:blank?))
     user_attributes = []
 
@@ -55,7 +55,8 @@ class DownloadsController < ApplicationController
       question = Question.find(attempt.question_id)
       fields = [attempt.id, user.name, attempt.question_id, attempt.answer, attempt.is_correct, attempt.created_at] 
       question_attributes.each do |qa|
-        fields << question[qa.name]
+        qv = QuestionValue.where(:question_id=>attempt.question_id, :question_attribute_id=>qa.id)
+        fields << qv[0] if qv.size > 0
       end
       user_attributes.each do |qa|
         fields << user[qa.name]
