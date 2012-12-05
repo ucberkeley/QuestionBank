@@ -133,7 +133,7 @@ When /^I upload a CSV file with the following:$/ do |string|
 end
 
 Given /^"(.*?)" is added as a question attribute$/ do |arg1|
-  Question.hydra_attributes.create(name: arg1, backend_type: 'string')
+  QuestionAttribute.create(name: arg1, backend_type: 'string')
 end
 
 # filler step until feature is implemented

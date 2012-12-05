@@ -9,7 +9,8 @@
   %dt Created
   %dd= format_date(@question.created_at)
 
-  -@question.hydra_attributes.each do |key, val|
+  -@question.question_values.each do |val|
     -next if val.nil?
-    %dt=key
-    %dd=val
+    -qa = QuestionAttribute.find(val.question_attribute_id)
+    %dt=qa.name
+    %dd=val[(qa.backend_type+"_value").to_sym]

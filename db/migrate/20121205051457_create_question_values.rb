@@ -8,7 +8,7 @@ class CreateQuestionValues < ActiveRecord::Migration
       t.boolean :bool_value
       t.datetime :date_value
       t.references :question, :null => false
-      t.references :question_attributes, :null => false
+      t.references :question_attribute, :null => false
 
       t.timestamps
     end
