@@ -195,9 +195,14 @@ ActiveRecord::Schema.define(:version => 20121203233234) do
 
   add_index "questions", ["hydra_set_id"], :name => "questions_hydra_set_id_index"
 
+  create_table "questions_question_groups", :id => false, :force => true do |t|
+    t.integer "question_group_id", :null => false
+    t.integer "question_id",       :null => false
+  end
+
   create_table "questions_tags", :id => false, :force => true do |t|
-    t.integer "question_id", :null => false
-    t.integer "tag_id",      :null => false
+    t.integer "question_id"
+    t.integer "tag_id"
   end
 
   create_table "roles", :force => true do |t|
@@ -246,5 +251,10 @@ ActiveRecord::Schema.define(:version => 20121203233234) do
   end
 
   add_index "users_roles", ["user_id", "role_id"], :name => "index_users_roles_on_user_id_and_role_id"
+
+  create_table "users_user_groups", :id => false, :force => true do |t|
+    t.integer "user_group_id", :null => false
+    t.integer "user_id",       :null => false
+  end
 
 end
