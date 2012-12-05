@@ -20,3 +20,11 @@ Scenario: Logout
 	Then I should see "Logout"
 	When I sign out
 	Then I should see "Login"
+
+Scenario: Enter email
+	Given I am on the homepage
+	And I am logged in
+	And I fill in "user_email" with "someone@somewhere.com"
+	And I press "Sign in"
+	Then I should see "Email" 
+	And I should see "someone@somewhere.com"
