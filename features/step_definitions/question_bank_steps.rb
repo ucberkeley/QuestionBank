@@ -163,6 +163,11 @@ Then /^I should get a download with the filename "([^\"]*)"$/ do |filename|
   page.response_headers['Content-Disposition'].should include("filename=\"#{filename}\"")
 end
 
+Given /^I post to "(.*?)" with:$/ do |path, string|
+  post path, string, "CONTENT_TYPE" => "application/json"
+end
+
+
 Given /^I have no privileges in group "(.*?)"$/ do |arg1|
   pending # express the regexp above with the code you wish you had
 end
