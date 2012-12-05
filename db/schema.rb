@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121203233234) do
+ActiveRecord::Schema.define(:version => 20121205051457) do
 
   create_table "attempts", :force => true do |t|
     t.text     "answer"
@@ -173,6 +173,13 @@ ActiveRecord::Schema.define(:version => 20121203233234) do
 
   add_index "hydra_text_users", ["entity_id", "hydra_attribute_id"], :name => "hydra_text_users_index", :unique => true
 
+  create_table "question_attributes", :force => true do |t|
+    t.string   "name"
+    t.string   "backend_type"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
   create_table "question_groups", :force => true do |t|
     t.string   "name"
     t.integer  "user_id"
@@ -185,6 +192,19 @@ ActiveRecord::Schema.define(:version => 20121203233234) do
     t.integer "question_id",       :null => false
   end
 
+  create_table "question_values", :force => true do |t|
+    t.string   "string_value"
+    t.float    "float_value"
+    t.text     "text_value"
+    t.integer  "integer_value"
+    t.boolean  "bool_value"
+    t.datetime "date_value"
+    t.integer  "question_id",            :null => false
+    t.integer  "question_attributes_id", :null => false
+    t.datetime "created_at",             :null => false
+    t.datetime "updated_at",             :null => false
+  end
+
   create_table "questions", :force => true do |t|
     t.text     "xml"
     t.datetime "created_at",   :null => false
@@ -195,14 +215,9 @@ ActiveRecord::Schema.define(:version => 20121203233234) do
 
   add_index "questions", ["hydra_set_id"], :name => "questions_hydra_set_id_index"
 
-  create_table "questions_question_groups", :id => false, :force => true do |t|
-    t.integer "question_group_id", :null => false
-    t.integer "question_id",       :null => false
-  end
-
   create_table "questions_tags", :id => false, :force => true do |t|
-    t.integer "question_id"
-    t.integer "tag_id"
+    t.integer "question_id", :null => false
+    t.integer "tag_id",      :null => false
   end
 
   create_table "roles", :force => true do |t|
@@ -251,10 +266,5 @@ ActiveRecord::Schema.define(:version => 20121203233234) do
   end
 
   add_index "users_roles", ["user_id", "role_id"], :name => "index_users_roles_on_user_id_and_role_id"
-
-  create_table "users_user_groups", :id => false, :force => true do |t|
-    t.integer "user_group_id", :null => false
-    t.integer "user_id",       :null => false
-  end
 
 end
