@@ -22,6 +22,12 @@ Feature: An authorized user can upload data about questions or students
             | Question B | 2 |
             | Question C | 3 |
 
+        Given the following attempts exist:
+            | Question   | User      | Answer | Correctness |
+            | Question A | Student A | Apple  | True        |
+            | Question B | Student A | Orange | False       |
+            | Question A | Student B | Orange | False       |
+
         Given "Question A" is in the question group "Question Group 1"
         And "Question A" is in the question group "Question Group 2"
         And "Question B" is in the question group "Question Group 1"
@@ -46,6 +52,7 @@ Feature: An authorized user can upload data about questions or students
         When I fill in "new_attribute[name]" with "Difficulty"
         And I press "Add"
         Then I should see "New attribute successfully created"
+        And I should see "Difficulty"
 
     Scenario: A user can upload custom attributes
         Given I am logged in as "Instructor X"
@@ -58,6 +65,10 @@ Feature: An authorized user can upload data about questions or students
         2,75
         """
         Then I should see "Data successfully imported!"
+        And I am on the questions page
+        And I follow "Question A"
+        Then I should see "Difficulty"
+        And I should see "80"
 
     Scenario: A user can use custom attributes to download data
         Given I am logged in as "Instructor X"
@@ -65,6 +76,7 @@ Feature: An authorized user can upload data about questions or students
         When I am on the new download page
         When I select "User Group 1" from "quiz_user_group"
         And I select "Question Group 1" from "quiz_question_group"
+        And I select "Difficulty" from "quiz_question_attributes"
         And I press "download_data_submit"
         Then I should get a download with the filename "User_Group_1_Question_Group_1_attempts.csv"
-
+        And I should see "Difficulty"

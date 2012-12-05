@@ -128,7 +128,7 @@ end
 When /^I upload a CSV file with the following:$/ do |string|
   visit new_upload_path
   file = Tempfile.new(string)
-  attach_file(:upload_upload_file, file.path)
+  attach_file(:upload_upload_file,  Rails.root.join('features', 'difficulty.csv'))
   click_button "Upload CSV"
 end
 
