@@ -136,6 +136,14 @@ Given /^"(.*?)" is added as a question attribute$/ do |arg1|
   QuestionAttribute.create(name: arg1, backend_type: 'string')
 end
 
+Given /^I have admin privilege$/ do
+  current_user.add_role :admin
+end
+
+Given /^"(.*?)" has admin privilege$/ do |name|
+  User.find_by_name(name).add_role :admin
+end
+
 # filler step until feature is implemented
 When /^I send a POST request to "(.*?)" with:$/ do |arg1, string|
   pending # express the regexp above with the code you wish you had

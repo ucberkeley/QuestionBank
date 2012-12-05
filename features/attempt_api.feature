@@ -55,5 +55,8 @@ Scenario: Adding an attempt from an exisiting user should be recorded
             }
         }
       """
-    Given I am on the users page
+    Given Omniauth is in test mode
+    And "Instructor X" has admin privilege
+    And I am logged in as "Instructor X"
+    And I am on the users page
     Then I should see "AaronCulich"
