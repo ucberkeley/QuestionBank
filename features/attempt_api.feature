@@ -56,5 +56,4 @@ Scenario: Adding an attempt from an exisiting user should be recorded
         }
       """
     Given I am on the users page
-    Then show me the page
     Then I should see "AaronCulich"
