@@ -125,10 +125,10 @@ Then /^I should receive a file "(.*?)"$/ do |file|
   page.response_headers['Content-Type'].should == "text/csv" && page.response_headers['Content-Disposition'].should =~ /#{file}/
 end
 
-When /^I upload a CSV file with the following:$/ do |string|
+When /^I upload a CSV file "(.*?)" with the following content:$/ do |filename, string|
   visit new_upload_path
   file = Tempfile.new(string)
-  attach_file(:upload_upload_file,  Rails.root.join('features', 'difficulty.csv'))
+  attach_file(:upload_upload_file,  Rails.root.join('features', filename))
   click_button "Upload CSV"
 end
 
@@ -167,6 +167,9 @@ Given /^I post to "(.*?)" with:$/ do |path, string|
   post path, string, "CONTENT_TYPE" => "application/json"
 end
 
+Given /^"(.*?)" is added as a user attribute$/ do |arg1|
+  UserAttribute.create(name: arg1, backend_type: 'string')
+end
 
 Given /^I have no privileges in group "(.*?)"$/ do |arg1|
   pending # express the regexp above with the code you wish you had

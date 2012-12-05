@@ -54,11 +54,11 @@ Feature: An authorized user can upload data about questions or students
         Then I should see "New attribute successfully created"
         And I should see "Difficulty"
 
-    Scenario: A user can upload custom attributes
+    Scenario: A user can upload custom attributes for questions
         Given I am logged in as "Instructor X"
         Given I am on the new attribute page
         And "Difficulty" is added as a question attribute
-        When I upload a CSV file with the following:
+        When I upload a CSV file "difficulty.csv" with the following content:
         """
         Question Id,Difficulty
         1,80
@@ -69,6 +69,24 @@ Feature: An authorized user can upload data about questions or students
         And I follow "Question A"
         Then I should see "Difficulty"
         And I should see "80"
+
+    Scenario: A user can upload custom attributes for users
+        Given I am logged in as "Instructor X"
+        Given I am on the new attribute page
+        And "Hardworking" is added as a user attribute
+        When I upload a CSV file "hardworking.csv" with the following content:
+        """
+        User Id,Hardworking
+        3,True
+        4,False
+        5,False
+        6,False
+        """
+        Then I should see "Data successfully imported!"
+        And I am on the users page
+        And I follow "Student A"
+        Then I should see "Hardworking"
+        And I should see "True"
 
     Scenario: A user can use custom attributes to download data
         Given I am logged in as "Instructor X"

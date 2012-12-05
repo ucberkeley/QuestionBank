@@ -19,6 +19,7 @@ class Ability
         can :read, Tag
         can :manage, Question
         cannot :quiz, Question
+        can :read, User, :id => UserGroup.with_role([:owner, :viewer], user).map{|group| group.users.map{|user| user.id } }.flatten.uniq
     end
     can :manage, User, :id => user.id # allow the user to change its own profile
 
