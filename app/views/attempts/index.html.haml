@@ -16,11 +16,11 @@
 
   - @attempts.each do |attempt|
     %tr
-      %td= link_to attempt.answer, attempt
-      %td= attempt.user.name
-      %td= attempt.question.xml
-      %td= attempt.is_correct
-      %td= format_date(attempt.created_at)
+      %td= link_to attempt.answer, attempt unless attempt.answer.blank?
+      %td= attempt.user.name unless attempt.user.blank?
+      %td= attempt.question.xml unless attempt.question.blank?
+      %td= attempt.is_correct unless attempt.is_correct.blank?
+      %td= format_date(attempt.created_at) unless attempt.created_at.blank?
       %td
         = link_to 'Destroy', attempt, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger index-action pull-right'
         = link_to 'Edit', edit_attempt_path(attempt), :class => 'btn btn-primary index-action pull-right'
