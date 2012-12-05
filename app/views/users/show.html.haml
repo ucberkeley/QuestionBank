@@ -3,3 +3,8 @@
 %dl
   %dt Email
   %dd #{@user.email if @user.email}
+  -@user.user_values.each do |val|
+    -next if val.nil?
+    -ua = UserAttribute.find(val.user_attribute_id)
+    %dt=ua.name
+    %dd=val[(ua.backend_type+"_value").to_sym]

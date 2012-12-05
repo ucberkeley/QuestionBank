@@ -5,33 +5,30 @@ class UploadsController < ApplicationController
   def new
     authenticate_user!
     @question_attributes = QuestionAttribute.all
-    #@question_attributes = Question.hydra_attributes
-    #@user_attributes = User.hydra_attributes
+    @user_attributes = UserAttribute.all
   end
 
   # GET /uploads/attribute/new
   def new_attribute
     authenticate_user!
     @question_attributes = QuestionAttribute.all
-    #@question_attributes = Question.hydra_attributes
-    #@user_attributes = User.hydra_attributes
+    @user_attributes = UserAttribute.all
   end
 
   # POST /uploads/attribute/new
   def create_attribute
     authenticate_user!
     flash[:error] = 'You must supply a new column name.' and redirect_to :action => 'new_attribute' and return if params[:new_attribute][:name].blank?
-    # data_table = params[:new_attribute][:data_table] == "Questions" ? Question : User;
-    data_table = QuestionAttribute;
+    data_table = params[:new_attribute][:data_table] == "Questions" ? QuestionAttribute : UserAttribute;
     #column_name = current_user.name + ":" + params[:new_attribute][:name]
     column_name = params[:new_attribute][:name]
     #flash[:error] = 'Specified column already exist.' and redirect_to :action => 'new_attribute' and return if data_table.hydra_attributes.exists?(:name => column_name)
     flash[:error] = 'Specified column already exist.' and redirect_to :action => 'new_attribute' and return if data_table.exists?(:name => column_name)
     @question_attributes = QuestionAttribute.all
-    #@user_attributes = User.hydra_attributes
+    @user_attributes = UserAttribute.all
 
     #data_table.hydra_attributes.create(name: column_name, backend_type: params[:new_attribute][:backend_type])
-    QuestionAttribute.create(:name=>column_name, :backend_type=>params[:new_attribute][:backend_type])
+    data_table.create(:name=>column_name, :backend_type=>params[:new_attribute][:backend_type])
     flash[:notice] = "New attribute successfully created"
 
     redirect_to :action => 'new_attribute'
@@ -45,7 +42,7 @@ class UploadsController < ApplicationController
     data = csv.read()
     headers = data.headers
     skip = false
-    #if headers.include?("Question Id")
+    if headers.include?("Question Id")
       custom_headers = data.headers.collect {|h| QuestionAttribute.find_by_name(h) }.compact!
       data.each do |row|
         question_id = row["Question Id"]
@@ -54,21 +51,21 @@ class UploadsController < ApplicationController
           QuestionValue.update_attribute(question, h, row[h.name])
         end
       end
-    # else
-    #   custom_headers = data.headers.collect {|h| User.hydra_attributes.find_by_name(h) }.compact!
-    #   owned_groups = UserGroup.with_role([:owner,:viewer], current_user)
-    #   data.each do |row|
-    #     user_id = row["User Id"]
-    #     user = User.find(user_id)
-    #     if (user.user_groups & owned_groups).size < 1
-    #       skip = true
-    #       next
-    #     end
-    #     custom_headers.each do |h|
-    #       user.update_attribute(h.name.to_sym, row[h.name])
-    #     end
-    #   end
-    # end
+    else
+      custom_headers = data.headers.collect {|h| UserAttribute.find_by_name(h) }.compact!
+      owned_groups = UserGroup.with_role([:owner,:viewer], current_user)
+      data.each do |row|
+        user_id = row["User Id"]
+        user = User.find(user_id)
+        if (user.user_groups & owned_groups).size < 1 and !can? :manage, user
+          skip = true
+          next
+        end
+        custom_headers.each do |h|
+          UserValue.update_attribute(user, h, row[h.name])
+        end
+      end
+    end
 
     if skip
       flash[:notice] = "Data successfully imported! (some records are skipped for lack of permission)"

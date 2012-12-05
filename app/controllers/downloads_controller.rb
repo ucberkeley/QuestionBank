@@ -9,7 +9,7 @@ class DownloadsController < ApplicationController
     @user_groups = UserGroup.accessible_by(current_ability)
     @question_groups = QuestionGroup.accessible_by(current_ability)
     @question_attributes = QuestionAttribute.all
-    # @user_attributes = User.hydra_attributes
+    @user_attributes = UserAttribute.all
   end
 
   # POST /downloads
@@ -17,8 +17,7 @@ class DownloadsController < ApplicationController
   def create
     authenticate_user!
     question_attributes = QuestionAttribute.find(params[:quiz][:question_attributes].reject!(&:blank?))
-    # user_attributes = User.hydra_attributes.find(params[:quiz][:user_attributes].reject!(&:blank?))
-    user_attributes = []
+    user_attributes = UserAttribute.find(params[:quiz][:user_attributes].reject!(&:blank?))
 
     if !params[:quiz][:user_group].blank? && !params[:quiz][:question_group].blank?
       user_group = UserGroup.find(params[:quiz][:user_group])
@@ -58,8 +57,9 @@ class DownloadsController < ApplicationController
         qv = QuestionValue.where(:question_id=>attempt.question_id, :question_attribute_id=>qa.id)
         fields << qv[0] if qv.size > 0
       end
-      user_attributes.each do |qa|
-        fields << user[qa.name]
+      user_attributes.each do |ua|
+        uv = UserValue.where(:user_id=>attempt.user_id, :user_attribute_id=>ua.id)
+        fields << uv[0] if uv.size > 0
       end
       csv << fields
      end
