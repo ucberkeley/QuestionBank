@@ -2,6 +2,8 @@ class Attempt < ActiveRecord::Base
   belongs_to :question
   belongs_to :user
 
+  attr_accessible :answer, :is_correct, :created_at, :question_id, :user_id, :updated_at
+  
   def self.retrieve_by_user_group(user_group_id) 
   	Attempt.includes(:user => [:user_groups]).where("user_groups.id = ?", user_group_id)
   end
