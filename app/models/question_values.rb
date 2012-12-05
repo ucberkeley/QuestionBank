@@ -1,2 +1,2 @@
-class QuestionValues < ActiveRecord::Base
+class QuestionValue < ActiveRecord::Base
 end

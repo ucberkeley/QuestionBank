@@ -2,6 +2,8 @@ class Question < ActiveRecord::Base
   attr_accessible :xml, :tag_ids
 	has_and_belongs_to_many :tags
   has_and_belongs_to_many :question_groups
+  has_many :question_attributes
+  has_many :question_values, :through => :question_attributes
 	belongs_to :user
 	has_many :attempts
 

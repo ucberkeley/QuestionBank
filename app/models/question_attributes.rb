@@ -1,2 +1,2 @@
-class QuestionAttributes < ActiveRecord::Base
+class QuestionAttribute < ActiveRecord::Base
 end
