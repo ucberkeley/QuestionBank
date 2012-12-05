@@ -1,0 +1,17 @@
+%h1 Listing apis
+
+%table
+  %tr
+    %th
+    %th
+    %th
+
+  - @apis.each do |api|
+    %tr
+      %td= link_to 'Show', api
+      %td= link_to 'Edit', edit_api_path(api)
+      %td= link_to 'Destroy', api, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Api', new_api_path
