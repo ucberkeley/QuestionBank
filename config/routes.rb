@@ -21,6 +21,8 @@ QuestionBank::Application.routes.draw do
   get '/uploads/attribute/new' => 'uploads#new_attribute', :as => 'new_attribute'
   post '/uploads/attribute/new' => 'uploads#create_attribute', :as => 'create_attribute'
 
+  post '/api/event/new' => 'api#new_event'
+  
   root :to => "home#index"
   resources :users, :only => [:index, :show, :edit, :update ]
   match '/auth/:provider/callback' => 'sessions#create'
