@@ -47,7 +47,7 @@ class DownloadsController < ApplicationController
     header_row = ["User Id", "User Name", "Question Id", "Answer", "Is Correct", "Created At"]
     header_row += question_attributes.map(&:name)
     header_row += user_attributes.map(&:name)
-    csv_string = CSV.generate(encoding:'UTF-8') do |csv|
+    csv_string = CSV.generate() do |csv|
      csv << header_row
      attempts.each do |attempt|
       user = User.find(attempt.user_id)

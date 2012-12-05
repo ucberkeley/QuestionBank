@@ -38,7 +38,7 @@ class UploadsController < ApplicationController
   def create
     authenticate_user!
     file = params[:upload][:upload_file].read()
-    csv = CSV.new(file, :headers=>true, :encoding=>"UTF-8")
+    csv = CSV.new(file, :headers=>true)
     data = csv.read()
     headers = data.headers
     skip = false
