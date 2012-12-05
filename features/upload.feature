@@ -91,10 +91,12 @@ Feature: An authorized user can upload data about questions or students
     Scenario: A user can use custom attributes to download data
         Given I am logged in as "Instructor X"
         And "Difficulty" is added as a question attribute
+        And "Hardworking" is added as a user attribute
         When I am on the new download page
         When I select "User Group 1" from "quiz_user_group"
         And I select "Question Group 1" from "quiz_question_group"
         And I select "Difficulty" from "quiz_question_attributes"
+        And I select "Hardworking" from "quiz_user_attributes"
         And I press "download_data_submit"
         Then I should get a download with the filename "User_Group_1_Question_Group_1_attempts.csv"
         And I should see "Difficulty"
